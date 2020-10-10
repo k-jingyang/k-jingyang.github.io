@@ -28,12 +28,14 @@ SELECT * FROM tbl_name WHERE key_col LIKE 'JOE%';
 ### How fast is it?
 How expensive is this? To return records `WHERE key_col LIKE 'JOE%'`, the database will have to scan through the entire table, check every record against the condition `JOE <= key_col < JOF`. This will result in an O(n) query where n is the size of the table.
  
-What if the column `key_col` is indexed? Remember that if you create an index for a column in a SQL database, the database will generate a sorted B Tree/B+ Tree data structure to hold the indexes. Doing a range query of `JOE <= key_col < JOF` greatly depends on whether a B Tree or B+ Tree is used.
+What if the column `key_col` is indexed? Remember that if you create an index for a column in a SQL database, the database will generate a sorted B Tree/B+ Tree data structure to hold the indexes. 
 
-One approach that I could think of:
+One approach to do a range query of `JOE <= key_col < JOF`:
 1. Look for the first  `key_col` value *V* that satisfies the condition of `JOE <= key_col`   
 2. Check every `key_col` value including and after *V* against the condition of 
   `key_col < JOF` until the first value that does not satisfy it
+
+The implementation of this approach greatly depends on whether a B Tree or B+ Tree is used.
 
 Step 1 takes O(logn) while Step 2 takes O(m) where m is the size of records that are within the range of `JOE <= key_col < JOF`
 
