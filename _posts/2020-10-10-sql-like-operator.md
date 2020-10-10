@@ -14,7 +14,7 @@ JOE < JOES < JOEY < JOF < JON
 
 This is also known as the lexicographic order or alphabetical order.
 
-### SQL LIKE operator
+### The SQL LIKE operator
 Imagine issuing an SQL query such as:
 
 {% highlight sql %}
