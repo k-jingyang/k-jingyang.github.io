@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sharing on Accelerate</title>
+    <meta charset="utf-8">
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+        @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+        @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+        @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
+        body {
+            font-family: 'Droid Serif';
+        }
+
+        .red {
+            color: red;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Yanone Kaffeesatz';
+            font-weight: normal;
+        }
+
+        .remark-code,
+        .remark-inline-code {
+            font-family: 'Ubuntu Mono';
+        }
+
+        blockquote::before {
+            content: open-quote;
+            margin-right: 5px;
+            font-size: 1.2em;
+        }
+
+        blockquote {
+            border-left: 0.3em solid #ccc;
+            padding: 0 15px;
+            font-style: italic;
+            color: gray;
+            quotes: "\201C""\201D""\2018""\2019";
+        }
+
+        blockquote::after {
+            content: close-quote;
+            margin-left: 5px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+
+<body>
+    <textarea id="source">
+
+class: center, middle
+
+<style>.image-50 img {
+    height: 500px;
+    width: 50%; 
+ }</style>
+
+# Sharing on 
+
+.image-50[![](https://miro.medium.com/max/633/1*q1OdSUfTWG6YDsF87c8FOA.png)]
+---
+<style>.enlarge ol {font-size: 30px;}</style>
+
+# Objectives
+.enlarge[
+1. Metrics to optimize towards
+1. Capabilities to develop
+1. Knowledge sharing
+]
+---
+
+# Measuring software delivery performance
+Velocity is a good for capacity planning
+--
+
+.red[but bad as a productivity metric]
+
+--
+
+Why?
+- Relative and team dependant
+- Can be gamed
+
+---
+
+# A good measure of performance
+**Outcomes**, not ouput
+
+--
+
+**Global**, not local
+- Teams not pitted against one another
+
+---
+# Metrics of software delivery performance
+
+### Lead time for changes
+Time taken from code committed to code in production
+
+--
+
+Why not time from customer making a request to request satisfied?
+
+--
+
+Estimates are highly uncertain. <br> E.g. Time taken to design feature vary feature to feature  
+
+---
+# Metrics of software delivery performance
+### Lead time for changes
+### Deployment frequency
+How often is your software deployed to production
+
+---
+# Metrics of software delivery performance
+### Lead time for changes
+### Deployment frequency
+### Mean-time-to-repair (MTTR)
+Failure is inevitable, how quickly can service be restored?
+
+---
+# Metrics of software delivery performance
+### Lead time for changes
+### Deployment frequency
+### Mean-time-to-repair (MTTR)
+### Change failure rates
+% of changes to production that result in degrated service or require remediation
+
+---
+class: middle center
+# What's the point?
+
+--
+![](./impacts-of-sdp.png)
+
+---
+# Impacts of software delivery performance
+
+### Organization performance
+- Profitability
+- Market share
+- Productivity
+
+### Noncommercial performance
+- Quantity of products and services
+- Operating efficiency
+- Customer satisfaction
+- Organization & mission goals
+
+---
+
+<style> 
+table {
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+    border: 1px solid ;
+}</style>
+
+# Classifying based on metrics 
+
+2017  | High Performers | Medium Performers | Low Performers
+------------- | -------------
+**Lead Time for Changes**  | Less than one hour | Between one week and one month | Between one week and one month*  
+**Deployment Frequency** | On demand (multiple deploys per day) | Between once per week and once per month | Between once per week and once per month*
+**MTTR** | Less than one hour | Less than one day | Between one day and one week
+**Change Failure Rate** | 0-15% | 0-15% |  31-45%
+*Low performers were lower on average but has the same median
+
+*2019 version out on the internet*
+---
+
+class: center middle
+# Low / Medium / High performers are different across all four measures
+Lower lead time and higher deployment frequency do not affect stability (change failure rate)
+
+
+---
+
+# Improving software delivery performance
+
+### 5 categories of 24 capabilities  
+
+1. Continuous delivery
+1. Architecture
+1. Product and process
+1. Lean Management & Monitoring
+1. Cultural
+
+---
+
+# 1. Continuous delivery
+1. Version control
+1. Deployment automation
+1. Continuous integration
+1. **Trunk-based development**
+1. **Test automation**
+1. Test data management
+1. **Shift left on security**
+1. **Continuous delivery**
+
+---
+
+# Trunk-based development
+Develop off master branch
+
+Branching is not bad per se
+--
+.red[, long lived branches are]
+
+--
+
+Long lived branches
+- Minimise merging and integration
+- Discourage refactoring and intrateam communication
+
+--
+
+Authors mentioned that GitHub Flow is suitable for open source projects because contributor are not working on it full time
+
+--
+
+<i class="material-icons">emoji_objects</i> Short-lived branches (daily)
+- Gives us room for code reviews in the future
+- Days start with a code review
+---
+# Test automation
+Developers create and maintain the tests
+
+Reliable automated tests
+
+---
+# Shift left on security
+
+DevSecOps
+
+InfoSec teams should give dev teams the means to build security in
+
+Build security in early
+
+---
+# Continous delivery
+
+Software is in a deployable state throughout its lifecycle
+
+System can be deployed to production at any time
+
+---
+
+# 2. Architecture
+
+1. Loosely coupled architecture
+2. Empowered teams
+
+---
+
+# Loosely coupled architecture
+
+Focus on **deployability** and **testability**
+
+--
+
+Loosely enabled architecture helps high performing groups to
+- Test, deploy, release and change their systems without dependencies on other teams
+- Complete their work with limited communication & coordination with people outside their team
+
+--
+
+Allows an engineering organization to scale <i class="material-icons">emoji_objects</i>  by reducing overhead of communcation
+
+<style>.image-comm img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 250px;
+}</style>
+
+.image-comm[![](https://martinsitconsulting.com/wp-content/uploads/2019/09/Communication_channel_black_white.png)]
+
+---
+
+# Loosely coupled architecture
+
+Microservices is a mean, not an end
+
+--
+
+Conway's Law
+<blockquote>Any organization that designs a system (defined broadly) will produce a design whose structure is a copy of the organization's communication structure.</blockquote>
+
+---
+
+# Empowered teams
+
+Let teams decide on their tool choices, they know best
+
+There's still a place for standardization
+- If a tool makes life easier, engineers will adopt them of their own free will
+
+Focus on outcomes, not tools or technologies
+
+---
+
+# 3. Product and process
+1. Customer feedback
+1. Value stream
+1. Working in small batches
+1. Team experimentation
+
+---
+
+# 4. Lean management & monitoring
+1. **Change approval processes**
+1. Monitoring (i.e. User monitoring)
+1. Proactive notification (i.e. System monitoring)
+1. WIP limits
+1. **Visualizing work**
+
+---
+
+# 5. Cultural
+1. **Westrum organizational culture**
+1. Supporting learning
+1. Collaboration among teams
+1. Job satisfaction
+1. Transformational leadership
+
+</textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+        var slideshow = remark.create();
+    </script>
+</body>
+
+</html>
