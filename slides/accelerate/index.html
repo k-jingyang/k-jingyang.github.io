@@ -25,6 +25,13 @@
             font-weight: normal;
         }
 
+        .center-img {
+            margin-top: 125px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         .remark-code,
         .remark-inline-code {
             font-family: 'Ubuntu Mono';
@@ -139,27 +146,6 @@ Failure is inevitable, how quickly can service be restored?
 % of changes to production that result in degrated service or require remediation
 
 ---
-class: middle center
-# What's the point?
-
---
-![](./impacts-of-sdp.png)
-
----
-# Impacts of software delivery performance
-
-### Organization performance
-- Profitability
-- Market share
-- Productivity
-
-### Noncommercial performance
-- Quantity of products and services
-- Operating efficiency
-- Customer satisfaction
-- Organization & mission goals
-
----
 <style> 
 table {
     border-collapse: collapse;
@@ -183,9 +169,29 @@ th, td {
 ---
 
 class: center middle
-# Low / Medium / High performers are different across all four measures
+# Low / Medium / High performers are significantly different across the four measures
 Lower lead time and higher deployment frequency do not affect stability (change failure rate)
 
+---
+class: middle center
+# What's the point?
+
+--
+![](./impacts-of-sdp.png)
+
+---
+# Impacts of software delivery performance
+
+### Organization performance
+- Profitability
+- Market share
+- Productivity
+
+### Noncommercial performance
+- Quantity of products and services
+- Operating efficiency
+- Customer satisfaction
+- Organization & mission goals
 
 ---
 # Improving software delivery performance
@@ -212,6 +218,12 @@ Lower lead time and higher deployment frequency do not affect stability (change 
 ---
 # Deployment automation
 
+Less prone to error
+
+--
+
+Automate the mundane tasks so developers can spend more time doing what they do best, solving problems 
+
 ---
 # Trunk-based development
 Develop off master branch
@@ -228,25 +240,44 @@ Long lived branches
 
 --
 
-Authors mentioned that GitHub Flow is suitable for open source projects because contributor are not working on it full time
+Authors mentioned that GitHub Flow is suitable for open source projects because contributors are not working on it full time
 
 --
 
 <i class="material-icons">emoji_objects</i> Short-lived branches (daily)
-- Gives us room for code reviews in the future
-- Days start with a code review
+- Gives us room for code reviews 
 ---
 # Test automation
 Developers create and maintain the tests
 
 Reliable automated tests
 
+---
+# Test automation
+
+<i class="material-icons">emoji_objects</i> Keep your tests clean too
+- Dirty tests are very bad
 --
 
-<i class="material-icons">emoji_objects</i> From *Clean Code*
+- As you modify production code, old tests will fail
+--
 
-<blockquote>About test automation</blockquote>
+- Messy test code makes it hard to get those tests to pass again
+--
 
+- Cost of maintaining test suite goes up significantly, becomes a liability
+--
+
+- Team discards writing tests because estimates are getting too large
+--
+
+- Without a test suite, team loses ability to ensure that production code changes do not break anything 
+--
+
+- Team starts to fear making changes to production code, dare not refactor 
+--
+
+- Production code starts to rot
 
 ---
 # Shift left on security
@@ -279,7 +310,7 @@ Focus on **deployability** and **testability**
 
 Loosely enabled architecture helps high performing groups to
 - Test, deploy, release and change their systems without dependencies on other teams
-- Complete their work with limited communication & coordination with people outside their team
+- Complete their work with minimal communication & coordination with people outside their team
 
 --
 
@@ -313,8 +344,12 @@ Conway's Law
 
 Let teams decide on their tool choices, they know best
 
+--
+
 There's still a place for standardization
 - If a tool makes life easier, engineers will adopt them of their own free will
+
+--
 
 Focus on outcomes, not tools or technologies
 
@@ -323,11 +358,7 @@ Focus on outcomes, not tools or technologies
 1. Customer feedback
 1. Value stream
 1. Working in small batches
-1. **Team experimentation**
-
----
-# Team experimentation
-
+1. Team experimentation
 
 ---
 # 4. Lean management & monitoring
@@ -338,7 +369,27 @@ Focus on outcomes, not tools or technologies
 1. Visualizing work
 
 ---
-# Change approval processess
+# Change approval processes
+
+External approvals (such as a manager or a CAB) were negatively correlated with
+- Lead time
+- Deployment frequency
+- Mean-time-to-repair
+
+--
+
+.red[External approvals had no correlation with change failure rate]
+
+---
+# Change approval processes
+
+Recommendation based on results
+- Lightweight change approval process based on peer review (e.g. pair programming or intrateam code review)
+- Deployment pipeline to detect and reject bad changes
+
+--
+
+Can be used for all kinds of changes, code, infrastructure and database changes
 
 ---
 # 5. Cultural
@@ -346,10 +397,34 @@ Focus on outcomes, not tools or technologies
 1. Supporting learning
 1. Collaboration among teams
 1. Job satisfaction
-1. Transformational leadership
+1. **Transformational leadership**
 
 ---
 # Westrum organizational culture
+
+| Pathlogical (Power-Oriented)  | Bureaucratic (Rule-Oriented) | Generative (Performance-Oriented) |
+|-------------------------------|------------------------------|-----------------------------------|
+| Lower cooperation              | Modest cooperation           | High cooperation                  |
+--
+
+| Messgers "shot"               | Messengers negletcted        | Messengers trained                |
+--
+
+| Responsibilities shirked      | Narrow responsibilities      | Risks are shared                  |
+--
+
+| Bridging discouraged          | Bridging tolerated           | Bridging encouraged               |
+--
+
+| Failure leads to scapegoating | Failure leads to justice     | Failure leads to inquiry          |
+--
+
+| Novelty crushed               | Novelty leads to problems    | Novelty implemented               |
+
+---
+# How to change the culture?
+
+.center-img[![](./culture.png)]
 
 ---
 # Transformational leadership
@@ -357,10 +432,16 @@ Focus on outcomes, not tools or technologies
 Page 122- 123
 
 ---
+# The big picture
+
+
+---
 # What's the point?
 For Developers
 
 For Managers
+
+If we are investing in these then we are on the right track
 
 </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
