@@ -165,7 +165,6 @@ class: center middle
 # Low / Medium / High performers are significantly different across the four measures
 Lower lead time and higher deployment frequency do not affect stability (change failure rate)
 
-
 ---
 class: middle center
 # What's the point?
@@ -241,12 +240,32 @@ Developers create and maintain the tests
 
 Reliable automated tests
 
+---
+# Test automation
+
+<i class="material-icons">emoji_objects</i> Keep your tests clean too
+- Dirty tests are worse than having no tests
 --
 
-<i class="material-icons">emoji_objects</i> From *Clean Code*
+- As you modify production code, old tests will fail
+--
 
-<blockquote>About test automation</blockquote>
+- Messy test code makes it hard to get those tests to pass again
+--
 
+- Cost of maintaining test suite goes up significantly, becomes a liability
+--
+
+- Team discards writing tests because estimates are getting too large
+--
+
+- Without a test suite, team loses ability to ensure that production code changes do not break anything 
+--
+
+- Team starts to fear making changes to production code, dare not refactor 
+--
+
+- Production code starts to rot
 
 ---
 # Shift left on security
