@@ -211,6 +211,12 @@ class: middle center
 ---
 # Deployment automation
 
+Less prone to error
+
+--
+
+Automate the mundane tasks so developers can spend more time doing what they do best, solving problems 
+
 ---
 # Trunk-based development
 Develop off master branch
@@ -227,13 +233,12 @@ Long lived branches
 
 --
 
-Authors mentioned that GitHub Flow is suitable for open source projects because contributor are not working on it full time
+Authors mentioned that GitHub Flow is suitable for open source projects because contributors are not working on it full time
 
 --
 
 <i class="material-icons">emoji_objects</i> Short-lived branches (daily)
 - Gives us room for code reviews 
-- Days start with a code review
 ---
 # Test automation
 Developers create and maintain the tests
@@ -244,7 +249,7 @@ Reliable automated tests
 # Test automation
 
 <i class="material-icons">emoji_objects</i> Keep your tests clean too
-- Dirty tests are worse than having no tests
+- Dirty tests are very bad
 --
 
 - As you modify production code, old tests will fail
@@ -298,7 +303,7 @@ Focus on **deployability** and **testability**
 
 Loosely enabled architecture helps high performing groups to
 - Test, deploy, release and change their systems without dependencies on other teams
-- Complete their work with limited communication & coordination with people outside their team
+- Complete their work with minimal communication & coordination with people outside their team
 
 --
 
@@ -332,8 +337,12 @@ Conway's Law
 
 Let teams decide on their tool choices, they know best
 
+--
+
 There's still a place for standardization
 - If a tool makes life easier, engineers will adopt them of their own free will
+
+--
 
 Focus on outcomes, not tools or technologies
 
@@ -342,11 +351,7 @@ Focus on outcomes, not tools or technologies
 1. Customer feedback
 1. Value stream
 1. Working in small batches
-1. **Team experimentation**
-
----
-# Team experimentation
-
+1. Team experimentation
 
 ---
 # 4. Lean management & monitoring
@@ -357,7 +362,27 @@ Focus on outcomes, not tools or technologies
 1. Visualizing work
 
 ---
-# Change approval processess
+# Change approval processes
+
+External approvals (such as a manager or a CAB) were negatively correlated with
+- Lead time
+- Deployment frequency
+- Mean-time-to-repair
+
+--
+
+.red[External approvals had no correlation with change failure rate]
+
+---
+# Change approval processes
+
+Recommendation based on results
+- Lightweight change approval process based on peer review (e.g. pair programming or intrateam code review)
+- Deployment pipeline to detect and reject bad changes
+
+--
+
+Can be used for all kinds of changes, code, infrastructure and database changes
 
 ---
 # 5. Cultural
@@ -365,10 +390,30 @@ Focus on outcomes, not tools or technologies
 1. Supporting learning
 1. Collaboration among teams
 1. Job satisfaction
-1. Transformational leadership
+1. **Transformational leadership**
 
 ---
 # Westrum organizational culture
+
+### Pathological (power-oriented)
+Large amount of fear and threat
+
+People hoard information or withhold it for political reasons
+
+---
+# Westrum organizational culture
+### Pathological (power-oriented)
+### Bureaucratic (rule-oriented)
+Those in departments want to main their "turf", insist on their own rules, and generally do things by the book, *their* book
+
+---
+# Westrum organizational culture
+### Pathological (power-oriented)
+### Bureaucratic (rule-oriented)
+### Generative (performance-oriented)
+Mission focused. How do we accomplish our goal? 
+
+Everything is subordinated to good performance, to doing what we are supposed to do
 
 ---
 # Transformational leadership
@@ -376,10 +421,16 @@ Focus on outcomes, not tools or technologies
 Page 122- 123
 
 ---
+# The big picture
+
+
+---
 # What's the point?
 For Developers
 
 For Managers
+
+If we are investing in these then we are on the right track
 
 </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
