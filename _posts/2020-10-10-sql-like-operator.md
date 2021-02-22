@@ -8,7 +8,7 @@ categories: sql
 ### How are strings ordered?
 First, we have to understand how strings are usually ordered.
 
-Here's an example of how strings are ordered: \
+Here is an example of how strings are ordered: \
 JOE < JOES < JOEY < JOF < JON
 
 

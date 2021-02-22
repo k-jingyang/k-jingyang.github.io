@@ -10,7 +10,7 @@ Using this blog, I want to:
 1. Record my learnings and small wins
 1. Solidify my understanding and identify any knowledge gaps by writing about what I learnt
 
-In a way, this blog is a form of an engineering logbook; To provide a platform to pen down thoughts, and to faciliate my growth.
+In a way, this blog is a form of an engineering logbook; To provide a platform to pen down thoughts, and to facilitate my growth.
 
 Guiding principles:
 1. A post does not have to be perfect
