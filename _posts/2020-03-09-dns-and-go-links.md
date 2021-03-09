@@ -125,7 +125,7 @@ Finally, we query the authoritative nameserver a.iana-servers.net for the A reco
 ### Why is there an extra . at the back?
 Adding a . at the end makes the domain name absolute. I think it is another rabbit hole that I would want to avoid for now, but here is my way of thinking about it.
 
-If we were to look at a domain name wwww.example.com, we could say that the domain name (from the right to the left) represents the domain name records you have to traverse to resolve it. However, the query does not start with the records in the .com TLD nameserver, but the root nameserver. Hence, by including the trailing . as in www.example.com., it accurately represents the traversal of domain name records to resolve it.
+If we were to look at a domain name wwww.example.com, we could say that the domain name (from the right to the left) represents the domain name records you have to traverse to resolve it. However, the query does not start with the records in the .com TLD nameserver, but the root nameserver. Hence, by including the trailing . as in `www.example.com.`, it accurately represents the traversal of domain name records to resolve it.
 
 ## GoLinks
 Back to GoLinks. This is why you need an A record in your authoritative DNS server for the `go` in `go/docs` to resolve to the GoLinks server so that the GoLinks server can redirect users to the long url given the short url.
