@@ -18,7 +18,7 @@ Hmmm. I know what DNS does! It translates easy to remember names like `www.examp
 
 > A records? It's a DNS thing... 
 
-What my reply would be, if I were asked about it. Using this little run-in with DNS, I decided to stretch my understanding for a bit.
+What my reply would be, if I were to be asked about it. Using this little run-in with DNS, I decided to stretch my understanding for a bit.
 
 ### DNS lookup
 Although we refer to them usually as just DNS servers, there are actually 4 types. 
