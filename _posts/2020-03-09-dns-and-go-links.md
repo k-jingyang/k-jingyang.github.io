@@ -14,11 +14,11 @@ I guessed that DNS had a part to play, and confirmed it after looking at the set
 
 > You have to add an A record
 
-Hmmm. I know what DNS does! It translates easy to remember names like `www.example.com` to its IP address. Our web browser contacts a DNS server whenever we try to access something like `www.example.com` to fetch its corresponding IP address.
+Hmmm. That sounds like DNS alright, and I know what DNS does! It translates easy to remember names like `www.example.com` to its IP address. Our web browser contacts a DNS server whenever we try to access something like `www.example.com` to fetch its corresponding IP address.
 
-> A records? It's a DNS thing... 
+> What are A records? 
 
-What my reply would be, if I were to be asked about it. Using this little run-in with DNS, I decided to stretch my understanding for a bit.
+A records? It's a DNS thing... What my reply would be, if I were to be asked about it. Using this little run-in with DNS, I decided to stretch my understanding for a bit.
 
 ### DNS lookup
 Although we refer to them usually as just DNS servers, there are actually 4 types. 
