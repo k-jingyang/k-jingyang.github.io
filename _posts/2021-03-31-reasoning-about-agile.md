@@ -7,7 +7,7 @@ categories: agile
 
 After being part of a Scrum team for more than a year, I realised that I have not thought deeply enough about Agile. 
 
-Having attended Agile and ScrumMaster courses, my mind operated in the fashion of "Agile is this..., not this..." and "Scrum is this.., not this...", without understanding the why. So, I decided to put some thought to understand and reason about Agile from first principles, hoping to have a better understanding of it.
+Having attended Agile and ScrumMaster courses, my mind operated in the fashion of "Agile is this..., not this..." and "Scrum is this.., not this...", without understanding the whys. So, I decided to put some thought to understand and reason about Agile from first principles, hoping to have a better understanding of it.
 
 This post was written specifically in the context of software development as I am not familiar with the application and usage of Agile in other fields. But I do hope that these insights are transferrable!
 
@@ -25,7 +25,7 @@ All three points are essentially about solving problems. Why is that so? Fundame
 By solving the right problems, you increase the amount of available resources either by freeing up existing resources or by increasing the total pool of resources. For example, you built a feature that allows your user to complete a task in a fraction of the time he/she usually takes. You just freed up his/her time (a resource).
 
 ### Correctly identifying the problem
-Our understanding of a problem greatly affects what our solutions. To avoid barking up the wrong tree, we need to correctly identify the problem before coming up with any solutions. **Imagine having spent many months working on a solution to find out that the problem you have previously identified was wrong or the context surrounding it has changed.** What a waste of resources.
+Our understanding of a problem greatly affects what our solutions are. To avoid barking up the wrong tree, we need to correctly identify the problem before coming up with any solutions. **Imagine having spent many months working on a solution to find out that the problem you have previously identified was wrong or the context surrounding it has changed.** What a waste of resources.
 
 ### Using the right solution
 Then, why is it important to use the right solution? 
