@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+	<title>reveal.js</title>
+
+	<link rel="stylesheet" href="../revealjs/dist/reset.css" />
+	<link rel="stylesheet" href="../revealjs/dist/reveal.css" />
+	<link rel="stylesheet" href="../revealjs/dist/theme/black.css" />
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css" />
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section data-markdown>
+				<textarea data-template>
+				## KM Data Migration
+				Collection of insights, tips, painful lessons from the data migration
+				---
+				### Disclaimer
+				- Hindsight is always 20/20
+				- These are data points from a single event
+				---
+				## Let's start!
+				---
+ 				## Repeat, repeat, repeat
+				- Keep repeating your migrations 
+					- Shortens your feedback loop <!-- .element: class="fragment" -->
+						- You want to know ASAP whether your changes are working (sounds familiar?)
+				- Automate <!-- .element: class="fragment" -->
+					- Cronjobs
+					- Scheduled stored procedures
+				---
+				### The Checklist Manifesto
+				- Have a checklist of the things to do for the day of the migration  <!-- .element: class="fragment" --> 
+				- Rehearse <!-- .element: class="fragment" -->
+					- Be careful of fatigue (i.e. skipping steps because you think you know it)
+				- Have a tickbox where you have to really tick it <!-- .element: class="fragment" -->
+				- Automate <!-- .element: class="fragment" -->
+					- Shell scripts
+				---
+				## Technical debt 
+				- If it lasts months, debt collectors will come knocking 
+					- Changes will come
+				- It's worth investing some effort to pay it down or to avoid taking on any <!-- .element: class="fragment" -->
+				---
+				## Technical debt (cont.)
+				- What could have been done/done more of 
+					- SQL linting <!-- .element: class="fragment" -->
+					- Comments <!-- .element: class="fragment" -->
+						- Technical constraint that should have been fixed much earlier  
+					- Tests <!-- .element: class="fragment" -->
+				- The earlier you build these in, the better <!-- .element: class="fragment" -->
+				---
+				
+				Technical debt & bus factor create a vicious cycle
+				---
+				## Data, oh you so nasty 
+				- Always validate your assumptions about the data
+					- DB constraints saved me many many times
+				
+				---
+				## Getting users to clean up
+				- Give them data in the form that is usable for them to clean up 
+				- What's a reasonable default behaviour if the data is not cleaned up? <!-- .element: class="fragment" -->
+				- Development effort vs User effort <!-- .element: class="fragment" -->
+
+				```python 
+				if trivial:
+					dev()
+				elif user_effort is reasonable:
+					user_cleanup()
+				else:
+					dev()
+				``` 
+				<!-- .element: class="fragment" -->
+				---
+				## Sanity checks
+				- Never underestimate this
+				- Saved by this even though we didn't do enough
+				- Ideally, the migration logic and sanity checks should be implemented by different people <!-- .element: class="fragment" -->
+				---
+				## Dear migrated data, 
+				## where were you from?
+				- Always have data lineage <!-- .element: class="fragment" -->
+					- Identify where a piece of migrated data was from (i.e. a unique id in the previous system)
+				- Makes patching easier! <!-- .element: class="fragment" -->
+				---
+				## Git is our friend
+				- Always check in your
+					- Migration scripts
+					- Scripts that generate user clean up lists
+					- Reference data lists 
+				---
+				"Are you testing migration now? Let me know once you're done so I can test mine" x 1000..
+				---
+				## De-coupling teams
+				- Data coupling 
+					- KM -> T3
+					- KM flushes data to test -> T3 cannot test <!-- .element: class="fragment" -->
+					- T3 needs data -> KM cannot test  <!-- .element: class="fragment" -->
+				- De-coupling teams <!-- .element: class="fragment" -->
+					- Two working sets of data
+				---
+				## What did I miss out?
+				</textarea>
+			</section>
+		</div>
+	</div>
+
+	<script src="../revealjs/dist/reveal.js"></script>
+	<script src="../revealjs/plugin/notes/notes.js"></script>
+	<script src="../revealjs/plugin/markdown/markdown.js"></script>
+	<script src="../revealjs/plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+		});
+	</script>
+</body>
+
+</html>
