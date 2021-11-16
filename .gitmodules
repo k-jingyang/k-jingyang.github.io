@@ -1,6 +1,3 @@
-[submodule "sharing/slides/revealjs/reveal.js"]
-	path = sharing/slides/revealjs/reveal.js
-	url = git@github.com:hakimel/reveal.js.git
 [submodule "sharing/slides/reveal.js"]
 	path = sharing/slides/reveal.js
-	url = git@github.com:hakimel/reveal.js.git
+	url = https://github.com/hakimel/reveal.js.git 
