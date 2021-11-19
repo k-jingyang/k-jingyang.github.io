@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="../reveal.js/dist/reset.css" />
+    <link rel="stylesheet" href="../reveal.js/dist/reveal.css" />
+    <link rel="stylesheet" href="../reveal.js/dist/theme/serif.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="../reveal.js/plugin/highlight/monokai.css" />
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+					## Understanding TLS
+					High level introduction to Transport Layer Security 
+					
+					(and sorta HTTPS)
+					---
+					## Takeaways
+					- What is HTTPS
+					- Mental model of how the various parts of TLS fit together 
+						- Easily work on TLS configuration tasks or resolve any cert issues 
+					- "If our private CA decides to use a new root cert, what do we need to do?"
+					---
+					## Overview
+					- Super brief intro to TLS, HTTPS
+					- Asymmetric & Symmetric Encryption
+					- TLS Connection & Handshake
+					- Digital Signatures
+					- Certificates
+					---
+					## TLS, HTTPS 
+					- Transport Layer Security (Latest version: 1.3)
+					- Provides a way to encrypt your communication
+						- HTTPS = Using TLS to encrypt your HTTP messages
+					- What's SSL?
+						- TLS supersedes SSL
+						- Terms often used interchangeably
+					---
+					## Symmetric & Asymmetric Encryption
+					---
+					### Symmetric Encryption
+					- The same key is used to encrypt and decrypt
+						- Both parties need to have the same key
+					- E.g.
+						- AES
+						- DES
+					---
+					### Asymmetric Encryption (Public-key cryptography)
+					- A pair of keys (public key, private key)
+						- Use public key to encrypt and private key to decrypt
+					- Can you do it the other way around?
+						- Yes
+							- RSA algorithm (keys have the same mathematical properties, not security properties)
+						- No
+							- Most other algorithms (E.g. Diffie-Hellman)
+					---
+					## What is a TLS connection?
+					- Data transferred is encrypted using a symmetric key
+						- For HTTPS, data = HTTP messages
+					- Both parties needs to arrive at the same symmetric key, how?	 
+						- TLS handshake (asymmetric encryption happens here; certs, digital signature, public key, private key) 
+					---
+					<p class="stretch"><img src="https://hpbn.co/assets/diagrams/b83b75dbbf5b7e4be31c8000f91fc1a8.svg"></p>
+
+					---
+					## TLS v1.2 Handshake
+					- Why 1.2 instead of 1.3? 
+						- More intuitive to understand the purpose of the various components from 1.2's handshake
+					---
+					<style>
+					.container {
+						display: flex;
+					}
+					.flex-col{
+						flex: 1;
+					}
+					</style>
+
+					<div class="container"> 
+	
+					<div class="flex-col" data-markdown>	
+					
+					
+					![handshake](https://hpbn.co/assets/diagrams/b83b75dbbf5b7e4be31c8000f91fc1a8.svg)
+						
+					</div>
+					<div class="flex-col" data-markdown> 
+
+					<div class="r-stack">
+					<div class="fragment fade-in-then-out">
+
+					Client sends
+					- Client random
+
+					</div>
+					<div class="fragment fade-in-then-out">
+					
+					Server sends
+					- Server random
+					- **Certificate** (this contains the public key of the server)
+					- **Digital signature** of this message signed by the server's private key
+					
+					</div>
+					<div class="fragment fade-in-then-out">
+					
+					Client verifies
+					- Certificate against its CA certs store (which contains recognized CA certificates)
+					- Digital signature
+					</div>
+					<div class="fragment fade-in-then-out">
+					
+					Client uses
+					- Public key (in the server certificate) to encrypt a pre-master secret and sends it to the server
+					</div>
+
+					<div class="fragment fade-in-then-out">
+					
+					Client uses
+					- Pre-master secret
+					- Client random
+					- Server random
+
+					to generate the symmetric key 
+					</div>
+
+					<div class="fragment fade-in-then-out">
+					
+					Server uses
+					- Pre-master secret
+					- Client random
+					- Server random
+	
+					to generate the symmetric key 
+					</div>
+
+					<div class="fragment fade-in-then-out">
+					
+					Server & client uses symmetric key to encrypt and decrypt application data
+
+					</div>
+					
+					</div>
+
+					</div>
+					---
+					Based on the handshake, we'll go more in depth on
+					1. Digital signature
+					1. Certificates
+
+					---
+					### Digital signature
+					"Client verifies the digital signature of the message signed by the server's private key"
+					
+					---
+					## What is a digital signature?
+					- fn(sent_message_hash, private_key) such that we can verify it against fn(received_message_hash, public_key)  
+					- What does it guarantee? <!-- .element: class="fragment" -->
+						- Origin - Validates that it's signed by the private key, and since nobody else should own the private key
+						- Integrity - Validates the message hash, so what's received = what's sent
+					---
+					<style>
+					.container {
+						display: flex;
+					}
+					.flex-col{
+						flex: 1;
+					}
+					</style>
+	
+					<div class="container"> 
+	
+					<div class="flex-col" data-markdown>	
+					
+						
+					![handshake](https://hpbn.co/assets/diagrams/b83b75dbbf5b7e4be31c8000f91fc1a8.svg)
+						
+					</div>
+					<div class="flex-col" data-markdown> 
+					
+					Server sends
+					- Server random
+					- **Certificate** (this contains the public key of the server)
+					- **Digital signature** of this message signed by the server's private key
+					
+					</div>
+					</div>
+					</div>
+					---
+					## Certificates
+					"Client verifies the certificate (given by the server) against its CA certs store (which contains recognized CA certificates)"
+					- There are actually 2 types of certs here <!-- .element: class="fragment" -->
+						- Cert given by the server (i.e. the server cert)
+						- Certs in the CA certs store (i.e. the root certs store)
+
+					---
+					## Verifying the server certificate
+					- The server cert must be issued by a CA whose cert is in the CA certs store
+					- The principle here is that the CA has done its checks to ensure that the entity owning the server is legitimate before issuing the cert <!-- .element: class="fragment" -->
+
+					---
+					## How to verify that a cert was issued by the CA?
+					- Apply what we learnt about signing!
+					- The server cert has a digital signature and was signed by the CA using their private key, and we have the public key of the CA in our CA certs store! <!-- .element: class="fragment" -->
+					---
+					## Examples
+					---
+					<img src="https://docs.min.io/minio/baremetal/_images/console-dashboard1.png"  height="50%" width="50%">
+
+					Using your web browser to access MinIO's console page via HTTPS
+
+					- MinIO needs to have a server cert
+					- Web browser needs to have the cert of the CA that issued MinIO's server cert, in its cert store
+
+					---
+					Our Java app accessing MinIO's API via HTTPS
+
+					- MinIO needs to have a server cert
+					- Our Java app needs to have the cert of the CA that issued MinIO's server cert, in its cert store
+						- `JAVA_HOME/lib/security/cacerts`
+
+					---
+					## Summary
+
+					- How TLS encrypts HTTP to form HTTPS
+						- Symmetric key encryption
+						- TLS handshake
+					- Digital signatures
+						- How it works
+					- Certificates
+						- Server cert & CA certs
+						- Examples & common issues
+
+					---
+					"If our private CA decides to use a new root cert (based on a new key pair), what do we need to do?"
+
+					---
+					- Have we included the new CA cert in the necessary cert stores?
+						- Web browser
+						- Java cert store
+
+					- Do we need to get new server certs?
+						- Is the old CA cert going to be revoked from the root certs stores?
+
+					</textarea
+          >
+        </section>
+      </div>
+    </div>
+
+    <script src="../reveal.js/dist/reveal.js"></script>
+    <script src="../reveal.js/plugin/notes/notes.js"></script>
+    <script src="../reveal.js/plugin/markdown/markdown.js"></script>
+    <script src="../reveal.js/plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>
