@@ -29,6 +29,7 @@ github_username: k-jingyang
 linkedin_username: k-jingyang
 header_pages:
   - about.md
+  - sharing.md
 
 # Build settings
 markdown: kramdown
