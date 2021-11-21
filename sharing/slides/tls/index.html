@@ -15,6 +15,19 @@
 
     <!-- Theme used for syntax highlighted code -->
     <link rel="stylesheet" href="../reveal.js/plugin/highlight/monokai.css" />
+
+    <style>
+      .reveal code {
+        font-size: x-large;
+      }
+
+      @media print {
+        .slide-background {
+          background-color: #f0f1eb !important;
+          -webkit-print-color-adjust: exact;
+        }
+      }
+    </style>
   </head>
 
   <body>
@@ -28,10 +41,10 @@
 					(and sorta HTTPS)
 					---
 					## Takeaways
-					- What is HTTPS
-					- Mental model of how the various parts of TLS fit together 
+					- What is HTTPS 
+					- Mental model of how the various parts of TLS fit together <!-- .element: class="fragment" -->
 						- Easily work on TLS configuration tasks or resolve any cert issues 
-					- "If our private CA decides to use a new root cert, what do we need to do?"
+					- "If our private CA decides to use a new root cert, what do we need to do?" <!-- .element: class="fragment" -->
 					---
 					## Overview
 					- Super brief intro to TLS, HTTPS
@@ -42,9 +55,9 @@
 					---
 					## TLS, HTTPS 
 					- Transport Layer Security (Latest version: 1.3)
-					- Provides a way to encrypt your communication
+					- Provides a way to encrypt your communication <!-- .element: class="fragment" -->
 						- HTTPS = Using TLS to encrypt your HTTP messages
-					- What's SSL?
+					- What's SSL? <!-- .element: class="fragment" -->
 						- TLS supersedes SSL
 						- Terms often used interchangeably
 					---
@@ -60,16 +73,16 @@
 					### Asymmetric Encryption (Public-key cryptography)
 					- A pair of keys (public key, private key)
 						- Use public key to encrypt and private key to decrypt
-					- Can you do it the other way around?
+					- Can you do it the other way around? <!-- .element: class="fragment" -->
 						- Yes
 							- RSA algorithm (keys have the same mathematical properties, not security properties)
 						- No
-							- Most other algorithms (E.g. Diffie-Hellman)
+							- Most other algorithms (keys are not interchangeable, e.g. Diffie-Hellman)
 					---
 					## What is a TLS connection?
 					- Data transferred is encrypted using a symmetric key
 						- For HTTPS, data = HTTP messages
-					- Both parties needs to arrive at the same symmetric key, how?	 
+					- Both parties needs to arrive at the same symmetric key, how?	<!-- .element: class="fragment" -->
 						- TLS handshake (asymmetric encryption happens here; certs, digital signature, public key, private key) 
 					---
 					<p class="stretch"><img src="https://hpbn.co/assets/diagrams/b83b75dbbf5b7e4be31c8000f91fc1a8.svg"></p>
@@ -167,7 +180,7 @@
 					## What is a digital signature?
 					- fn(sent_message_hash, private_key) such that we can verify it against fn(received_message_hash, public_key)  
 					- What does it guarantee? <!-- .element: class="fragment" -->
-						- Origin - Validates that it's signed by the private key, and since nobody else should own the private key
+						- Origin - Validates that it's signed by the private key, and because nobody else should own the private key
 						- Integrity - Validates the message hash, so what's received = what's sent
 					---
 					<style>
@@ -185,7 +198,6 @@
 					
 						
 					![handshake](https://hpbn.co/assets/diagrams/b83b75dbbf5b7e4be31c8000f91fc1a8.svg)
-						
 					</div>
 					<div class="flex-col" data-markdown> 
 					
@@ -231,6 +243,23 @@
 						- `JAVA_HOME/lib/security/cacerts`
 
 					---
+
+					```bash
+					curl: (60) SSL certificate problem: unable to get local issuer certificate
+					More details here: https://curl.haxx.se/docs/sslcerts.html
+					```
+
+					or similar problems, what is it about?
+
+					When we `curl --insecure` or similar things (e.g. `sslVerify=false`), what are we essentially doing? 
+					<!-- .element: class="fragment" -->
+
+					---
+					## Self-signed certs (w/o a CA)
+					- Use `openssl` to generate for your servers
+					- Won't be recognised by clients unless installed in clients' certs store
+
+					---
 					## Summary
 
 					- How TLS encrypts HTTP to form HTTPS
@@ -252,7 +281,15 @@
 
 					- Do we need to get new server certs?
 						- Is the old CA cert going to be revoked from the root certs stores?
+					
+					---
+					## Hope you had some takeaways!
 
+					---
+					## References
+
+					1. [Computerphile's video on TLS handshake](https://www.youtube.com/watch?v=86cQJ0MMses)
+					1. [High Performance Browser Networking](https://hpbn.co/transport-layer-security-tls/)
 					</textarea
           >
         </section>
@@ -269,7 +306,7 @@
       // - https://revealjs.com/config/
       Reveal.initialize({
         hash: true,
-
+        slideNumber: "c/t",
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
       });
