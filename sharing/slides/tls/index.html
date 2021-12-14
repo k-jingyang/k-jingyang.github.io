@@ -213,18 +213,18 @@
 					## Certificates
 					"Client verifies the certificate (given by the server) against its CA certs store (which contains recognized CA certificates)"
 					- There are actually 2 types of certs here <!-- .element: class="fragment" -->
-						- Cert given by the server (i.e. the server cert)
-						- Certs in the CA certs store (i.e. the root certs store)
-
+						- Cert given by the server (i.e. the server cert, contains the public key of the server)
+						- Certs in the CA certs store (i.e. the root certs store, contains the public keys of the root CAs)
 					---
 					## Verifying the server certificate
-					- The server cert must be issued by a CA whose cert is in the CA certs store
+					- The server cert must be issued by a CA whose cert is in the root CA certs store*
 					- The principle here is that the CA has done its checks to ensure that the entity owning the server is legitimate before issuing the cert <!-- .element: class="fragment" -->
 
 					---
 					## How to verify that a cert was issued by the CA?
 					- Apply what we learnt about signing!
 					- The server cert has a digital signature and was signed by the CA using their private key, and we have the public key of the CA in our CA certs store! <!-- .element: class="fragment" -->
+						- *fn(sent_message_hash, private_key) such that we can verify it against fn(received_message_hash, public_key)*
 					---
 					## Examples
 					---
@@ -255,13 +255,34 @@
 					<!-- .element: class="fragment" -->
 
 					---
-					## How to be issued a certificate from the CA?
-					You create a cert signing request (CSR), which contains your public key	and sends it to a CA.
-
-					---
 					## Self-signed certs (w/o a CA)
 					- Use `openssl` to generate for your servers
 					- Won't be recognised by clients unless installed in clients' certs store
+
+					---
+					## How to be issued a certificate from the CA?
+					- Create a cert signing request (CSR), which contains your public key and sends it to a CA
+
+					---
+					
+					## Aren't you simplifying?
+					Yes, I am
+
+					---
+					
+					## Intermediate CAs & Certificates
+					- *The server cert must be issued by a CA whose cert is in the root CA certs store*
+						- Not necessarily <!-- .element: class="fragment" -->
+
+					---
+
+					## Intermediate CAs & Certificates
+					- The root CA whose cert is in the root certs stores can grant someone else the ability to issue certs 
+						- (who can then grant someone else)
+						- such that the issued cert can verified with the root CA's cert 
+						<!-- .element: class="fragment" -->
+						- Certificate chain 
+						<!-- .element: class="fragment" -->
 
 					---
 					## Summary
@@ -274,6 +295,7 @@
 					- Certificates
 						- Server cert & CA certs
 						- Examples & common issues
+						- Intermediate CAs & certs
 
 					---
 					"If our private CA decides to use a new root cert (based on a new key pair), what do we need to do?"
@@ -294,6 +316,7 @@
 
 					1. [Computerphile's video on TLS handshake](https://www.youtube.com/watch?v=86cQJ0MMses)
 					1. [High Performance Browser Networking](https://hpbn.co/transport-layer-security-tls/)
+					1. [Intermediate Certificates] https://www.thesslstore.com/blog/root-certificates-intermediate/
 					</textarea
           >
         </section>
