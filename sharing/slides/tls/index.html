@@ -277,7 +277,7 @@
 					---
 
 					## Intermediate CAs & Certificates
-					- The root CA whose cert is in the root certs stores can grant someone else the ability to issue certs 
+					- The root CA whose cert is in the root certs stores can grant someone else, an Intermediate CA the ability to issue certs 
 						- (who can then grant someone else)
 						- such that the issued cert can verified with the root CA's cert 
 						<!-- .element: class="fragment" -->
@@ -285,6 +285,51 @@
 						<!-- .element: class="fragment" -->
 
 					---
+
+					## Certificate chain
+					- Root CA -> Server cert
+						- Verify server cert against root CA's cert in the root certs store
+					- Root CA -> Intermediate CA -> Server cert  <!-- .element: class="fragment" -->
+						- Verify server cert against intermediate CA's cert 
+						- Verify intermediate CA's cert against root CA's cert in the root certs store  
+					- Root CA -> Intermediate CA1 -> Intermediate CA2 -> Server cert? <!-- .element: class="fragment" -->
+					
+					---
+					## How to verify certificate chain?
+					---
+					<style>
+					.container {
+						display: flex;
+					}
+					.flex-col{
+						flex: 1;
+					}
+					</style>
+					
+					<div class="container"> 
+	
+					<div class="flex-col" data-markdown>	
+					<img src=https://miro.medium.com/max/256/1*9EbN8Qslk350q3BXzZruXw.png >
+					</div>
+					<div class="flex-col" data-markdown> 
+	
+					<div class="r-stack">
+					<div class="fragment fade-out">
+
+					- The server cert is appended with the intermediate CA certs
+					- When the cert is presented to you (client) by the server
+						- Verify down the chain
+
+					</div>
+					<div class="fragment fade-in">
+					
+					1. Server cert's digital signature against Intermediate CA's public key (inside cert)
+					1. Intermediate CA cert's digital signature against root CA's public key (inside root cert store) <!-- .element: class="fragment" -->
+					</div>
+					</div>
+					</div>
+					---
+
 					## Summary
 
 					- How TLS encrypts HTTP to form HTTPS
@@ -306,8 +351,8 @@
 						- Java cert store
 
 					- Do we need to get new server certs?
-						- Is the old CA cert going to be revoked from the root certs stores?
-					
+						- Is the old CA cert going to expire or revoked from the root certs stores?
+
 					---
 					## Hope you had some takeaways!
 
@@ -316,7 +361,8 @@
 
 					1. [Computerphile's video on TLS handshake](https://www.youtube.com/watch?v=86cQJ0MMses)
 					1. [High Performance Browser Networking](https://hpbn.co/transport-layer-security-tls/)
-					1. [Intermediate Certificates](https://www.thesslstore.com/blog/root-certificates-intermediate/)
+					1. [Intermediate Certificates I](https://www.thesslstore.com/blog/root-certificates-intermediate/)
+					1. [Intermediate Certificates II](https://jamielinux.com/docs/openssl-certificate-authority/create-the-intermediate-pair.html)
 					</textarea
           >
         </section>
