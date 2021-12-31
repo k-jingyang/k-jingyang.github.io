@@ -26,6 +26,6 @@ Always had trouble with understanding the various components of TLS, thought it'
 
 In this sharing, I give a brief overview of TLS, HTTP and smainly cover the TLS handshake, digital signatures, and certificates. 
 
-Largely based of {% post_url 2020-12-12-tls %}
+Largely based of [this post]({% post_url 2020-12-12-tls %})
 
 [Link to slides](../sharing/slides/tls)
