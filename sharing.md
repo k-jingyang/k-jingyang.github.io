@@ -20,8 +20,12 @@ Based on my work and experience on migrating the data from a legacy system to a 
 
 [Link to slides](../sharing/slides/migration-lessons)
 
-<!-- ### TLS
+### TLS
 
-<iframe src="../sharing/slides/tls" title="tls"></iframe>
+Always had trouble with understanding the various components of TLS, thought it'll help others who are in the same situation.
 
--->
+In this sharing, I give a brief overview of TLS, HTTP and smainly cover the TLS handshake, digital signatures, and certificates. 
+
+Largely based of {% post_url 2020-12-12-tls %}
+
+[Link to slides](../sharing/slides/tls)
