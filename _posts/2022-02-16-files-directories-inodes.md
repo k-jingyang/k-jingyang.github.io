@@ -43,10 +43,10 @@ The root directory `/` inode is 2 (for ext4 at least)
 
 Each load is a disk I/O, unless cached
 
-### Facebook's Haystack
+## Facebook's Haystack
 [Facebook's Haystack](https://www.usenix.org/legacy/event/osdi10/tech/full_papers/Beaver.pdf) tries to minimise the disk I/O per photo read by combining multiple photos into a large file, resulting in lesser inode overheads.
 
-### Soft link vs Hard link
+## Soft link vs Hard link
 A hard link to a file (say my-file.txt), creates a new directory entry (filename, inode number) where the inode number is the same inode number as my-file.txt. Hence, if my-file.txt is deleted (which removes its own directory entry, but not the inode), the hard link is not broken.
 
 A soft link (also known as symbolic link) to a file (say my-file.txt), creates a new directory entry (filename, inode number) and has its own inode number. However, the content of this soft link points to the specific directory entry of my-file.txt. Hence, if my-file.txt is deleted (which removes its own directory entry), the soft link will be broken.
