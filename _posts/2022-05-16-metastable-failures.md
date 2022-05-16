@@ -5,7 +5,7 @@ date:   2022-05-16 20:47:00 +0800
 categories: distributed-systems
 ---
 
-As referred to by [Marc Brooker's article][2] on [Metastability][1], a metastable failure
+As referred to by [Marc Brooker's blogpost][2] on [Metastability][1], a metastable failure
 
 > is a kind of *stable down state*, where the system is stable but not doing useful work, even though it's only being offered a load that it successfully handled sometime in the past
 
@@ -18,11 +18,13 @@ If the 2x load (say 560 QPS) exceeds what the database can handle **in time** (s
 
 We can see that even if the trigger is removed (i.e. database queries reach the database quickly now), the system sustains itself in the *stable down state*, a metastable failure.
 
-### What to do? 
+### What to do?  
 
 The root cause of the metastable failure is the sustaining feedback loop, not the trigger.
   - Think about how can we prevent this sustaining feedback loop from occuring? How can we stop it if it does occur? 
   - Some improvements that we make (e.g. retries) could actually be detrimental if it's not well thought out or implemented correctly (e.g. adding randomized jitter to retries reduces the risk of creating the feedback loop)  
+
+There are many others stated in the [original paper][1] but the aforementioned is what I want to take back the most.
 
 ### Personal thoughts
 Glad to come across across the [original paper][1] while reading [Slack's incident on 2-22-22](https://slack.engineering/slacks-incident-on-2-22-22/). 
