@@ -14,7 +14,7 @@ A system can enter this state when it's in a *metastable vulnerable state* (e.g.
 ### An example
 Given [here][3] where it started with a bulk of your web application's database queries being slow to reach your database (the trigger). As such, the web application retries, now you have 2x the load waiting to reach the database. 
 
-If the 2x load (say 560 QPS) exceeds what the database can handle **in time** (say 300 QPS), the database will keep handling a backlog of queries that will be timed-out and discarded by the web application (i.e. useless work). This feedback loop sustains itself when the web application keeps retrying queries after its previous queries timed out. 
+If the 2x load (say 560 QPS) exceeds what the database can handle **in time** (say 300 QPS), the database will keep handling a backlog of queries that will be timed-out and discarded by the web application (i.e. useless work). This feedback loop sustains itself when the web application keeps retrying queries after its previous queries timed out, adding to the backlog of queries while the database is processing them.
 
 We can see that even if the trigger is removed (i.e. database queries reach the database quickly now), the system sustains itself in the *stable down state*, a metastable failure.
 
