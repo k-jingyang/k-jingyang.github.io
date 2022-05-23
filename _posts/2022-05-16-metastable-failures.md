@@ -36,7 +36,7 @@ Although I haven't had the experience of using this in practice yet, but I'm sur
 ## References
 [Metastable Failures in Distributed Systems][1] \
 [Marc Brooker's blogpost on the paper][2] \
-[A summary of the paper by Aleksey Charapko, one of the paper's authors][3] \
+[A summary of the paper by Aleksey Charapko, one of the paper's authors][3]
 
 [1]: <https://sigops.org/s/conferences/hotos/2021/papers/hotos21-s11-bronson.pdf>
 [2]: <https://brooker.co.za/blog/2021/05/24/metastable.html>
