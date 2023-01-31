@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>QCon SF 2022</title>
+
+    <link rel="stylesheet" href="../reveal.js/dist/reset.css" />
+    <link rel="stylesheet" href="../reveal.js/dist/reveal.css" />
+    <link rel="stylesheet" href="../reveal.js/dist/theme/dracula.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="../reveal.js/plugin/highlight/monokai.css" />
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+				## QCon SF 2022 Sharing
+				What I've learnt
+				---
+				### Today's content
+				- Log4shell case studies
+				- Running a platform team
+				- CPU limits
+				- Buildpacks
+				- CUElang (Push to another session)
+				---
+				### Log4shell case studies
+				<table>
+					<thead><tr>
+						<th></th>
+						<th>Good</th>
+						<th>Bad</th>
+						<th>Ugly</th>
+					</tr></thead>
+					<tbody><tr>
+						<td>Impact analysis</td>
+						<td>Quickly identified impacted 
+							projects using SBOM database
+							</td>
+						<td>Scrambled to develop a git crawler to identify impacted projects</td>
+						<td>Manual verification via emails to all app owners</td>
+					</tr>
+				</tbody>
+				</table>
+				---
+				### Log4shell case studies
+				<table>
+					<thead><tr>
+						<th></th>
+						<th>Good</th>
+						<th>Bad</th>
+						<th>Ugly</th>
+					</tr></thead>
+					</tbody>
+					<tr>
+						<td>The fix</td>
+						<td>Automated deployment and verification</td>
+						<td>Automated deployment pipeline but no verification</td>
+						<td>Manual fixing and semi automated deployments. Approval required from security team for fixes</td>
+					</tr>
+					</tbody>
+				</table>
+				---
+				### Log4shell case studies
+				<table>
+					<thead><tr>
+						<th></th>
+						<th>Good</th>
+						<th>Bad</th>
+						<th>Ugly</th>
+					</tr></thead>
+					</tbody>
+					<tr>
+						<td>People impact</td>
+						<td>No one missed vacations</td>
+						<td>Burnt out, many canceled vacation</td>
+						<td>Burnt out</td>
+					</tr>
+					<tr>
+						<td>Culture</td>
+						<td>Shared responsibility</td>
+						<td>Shared responsibility</td>
+						<td>Developers: "Not my problem"</td>
+					</tr>
+					</tbody>
+				</table>
+				---
+				### Log4shell case studies
+				<table>
+					<thead><tr>
+						<th></th>
+						<th>Good</th>
+						<th>Bad</th>
+						<th>Ugly</th>
+					</tr></thead>
+					</tbody>
+					<tr>
+						<td>Duration of fix</td>
+						<td>10 days for apps, 40 days for vendor apps</td>
+						<td>80 days for apps and vendor apps</td>
+						<td>x</td>
+					</tr>
+					</tbody>
+				</table>
+				---
+				### Our Log4shell (IMHO)
+				<table>
+					<thead><tr>
+					</tr></thead>
+					</tbody>
+					<tr>
+						<td>Impact analysis</td>
+						<td>Manual verification via emails to all app owners</td>
+					</tr>
+					<tr>
+						<td>The fix</td>
+						<td>Automated deployment pipeline but no verification</td>
+					</tr>
+					<tr>
+						<td>People impact</td>
+						<td>No one missed vacations</td>
+					</tr>
+					<tr>
+						<td>Culture</td>
+						<td>Shared responsibility</td>
+					</tr>
+					<tr>
+						<td>Duration of fix</td>
+						<td>I have no idea?</td>
+					</tr>
+					</tbody>
+				</table>
+				---
+				### Our weakest: Impact analysis
+				The fix starts with identifying what needs to be fixed <!-- .element: class="fragment" -->
+				---
+				### Framework
+				- Know what to manage
+				- When and how do we say we have a problem
+				- The fix
+				- Collaborative culture
+				---
+				### Assessment
+				- Explore GitLab dependency scanning capabilities <!-- .element: class="fragment" -->
+					- Generate SBOM, and store them
+				- As an org, did we do an AAR on the Log4j incident on how we can improve? <!-- .element: class="fragment" -->
+				---
+				### Running a platform team
+				- Lyft + MercadoLibre
+				- Have a database to store depedency usage
+				- asas
+				- asas
+				---
+				### Summary thus far
+				---
+ 				### Cloud Native Buildpacks
+				 <img data-src="buildpacks.jpg">
+				---
+				### Code -> Container image
+				```Dockerfile 
+				# Dockerfile for Java
+				FROM openjdk:17-jdk-slim-buster
+				# fat.jar contains the java program and all its dependencies
+				COPY fat.jar /app
+				ENTRYPOINT java -jar /app/fat.jar
+				```
+				- Is this the best way? <!-- .element: class="fragment" -->
+				  - A change in dependency version will waste the entire layer <!-- .element: class="fragment" -->
+				  - How much memory to be give to JVM? Local PC vs K8s <!-- .element: class="fragment" -->
+				- Wild wild west <!-- .element: class="fragment" -->
+					- What about best practices? <!-- .element: class="fragment" -->
+				---
+				### Buildpacks
+				- Opinionated way of code -> container image
+				- Incorporate best practices
+				---
+				### Code -> Container image
+				```bash
+				pack build image_name --builder paketobuildpacks/builder:base
+				```
+				---
+				## How it works
+				<p class="r-stretch">
+					<img src="builders.jpg"/>
+				</p>
+				<p style="opacity: 0.2; font-size: 0.5em">Credits: AWS</p>
+
+				- Checks for specific filenames / environment variables <!-- .element: class="fragment" -->
+				---
+				## Example 1
+				<p class="r-stretch">
+					<img src="python-cnb.png"/>
+				</p>
+				---
+				## Example 2
+				<p class="r-stretch">
+					<img src="java-cnb.png"/>
+				</p>
+				---
+				### The good
+				- No more Dockerfile
+				- Software Bill of Materials provided out of the box
+				---
+				### Catches
+				- Some buildpacks call out to the internet...
+				- Figure out and change dev workflow
+					- `docker-compose`
+				---
+				### To play around
+				https://gitlab.com/csitsg/devops/golinks-backend-buildpacks/-/blob/master/BUILDPACKS.md
+				---
+				### Takeaways
+				- Know that this tool/paradigm exists and what problems it tries to solve
+					- Code -> Container image
+				- Require deeper exploration on viability
+				---
+				</textarea>
+        </section>
+      </div>
+    </div>
+
+    <script src="../reveal.js/dist/reveal.js"></script>
+    <script src="../reveal.js/plugin/notes/notes.js"></script>
+    <script src="../reveal.js/plugin/markdown/markdown.js"></script>
+    <script src="../reveal.js/plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>
