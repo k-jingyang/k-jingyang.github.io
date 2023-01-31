@@ -11,3 +11,8 @@ or afterwards
 git submodule update --init
 ```
 
+## Uploading reveal.js submodule
+
+```bash
+ git submodule update --recursive --remote
+ ```
