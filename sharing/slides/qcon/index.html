@@ -23,7 +23,6 @@
         <section data-markdown>
           <textarea data-template>
 				## QCon SF 2022 Sharing
-				What I've learnt
 				---
 				### Today's content
 				- Log4shell case studies
@@ -117,23 +116,23 @@
 					</tr></thead>
 					</tbody>
 					<tr>
-						<td>Impact analysis</td>
+						<td style="font-weight: bold;">Impact analysis</td>
 						<td>Manual verification via emails to all app owners</td>
 					</tr>
 					<tr>
-						<td>The fix</td>
+						<td style="font-weight: bold;">The fix</td>
 						<td>Automated deployment pipeline but no verification</td>
 					</tr>
 					<tr>
-						<td>People impact</td>
+						<td style="font-weight: bold;">People impact</td>
 						<td>No one missed vacations</td>
 					</tr>
 					<tr>
-						<td>Culture</td>
+						<td style="font-weight: bold;">Culture</td>
 						<td>Shared responsibility</td>
 					</tr>
 					<tr>
-						<td>Duration of fix</td>
+						<td style="font-weight: bold;">Duration of fix</td>
 						<td>I have no idea?</td>
 					</tr>
 					</tbody>
@@ -151,15 +150,72 @@
 				### Assessment
 				- Explore GitLab dependency scanning capabilities <!-- .element: class="fragment" -->
 					- Generate SBOM, and store them
+						- Sidetrack: Lyft <!-- .element: class="fragment" -->
 				- As an org, did we do an AAR on the Log4j incident on how we can improve? <!-- .element: class="fragment" -->
 				---
-				### Running a platform team
-				- Lyft + MercadoLibre
-				- Have a database to store depedency usage
-				- asas
-				- asas
+				## Running a platform team
+				MercadoLibre - Practices that allowed them to scale from 2k to 10k engineers
+				---
+				### Fury
+  				<img data-src="fury.png" >
+
+				- Their Backstage before Backstage
+				- "Every need that a developer has, Backstage gives a solution"
+				- Consistent developer experience <!-- .element: class="fragment" -->
+					- Allows central decisions to be pushed across the company 
+				- CLI/Web UI <!-- .element: class="fragment" -->
+				---
+				### Why?
+				- Save money
+					- E.g. Give suggestions of cheaper instance types
+				- Govern services
+					- E.g. Quality checks
+				- Security with automated controls
+				---
+				### Practices
+				- Track and stabilise support issues
+					- Peaks right after every feature release
+				- Controlled freedom <!-- .element: class="fragment" -->
+				<p class="r-stretch">
+					<img src="platform-options.jpg" width="60%">
+				</p>
+				---
+				### Practices
+				- Decision making
+					- 90% decide sharply 
+					- 10% escalate to leader 
+					- 1% golden nuggets (decides travel of team)
+				- Communication <!-- .element: class="fragment" -->
+					- Newsletter 
+					- App notifications 
+					- Emails
+				- Public roadmap <!-- .element: class="fragment" -->
+				---
+				### Practices
+				- Handling non-stardadised paths 
+					- E.g. Experimentation/POC
+					- Infra-as-code for compliance
+				- Bootcamp to learn internal tools <!-- .element: class="fragment" -->
+				---
+				### Their trophy - Log4j
+				- Patched in 1 day
+				---
+				### Assessment
+				- Public roadmap
+				- Newsletter
+					- We have started to do this
+				- Track support cost
+				- Identify concrete problem to solve 
+				---
+				### CPU limits
+				In most cases, using CPU limits on Kubernetes will unnecessarily throttle your workloads.
+				---
+				### CPU limits
+				- Removed requirements for K8s workloads to have CPU limits
+				- Added to go/devops
 				---
 				### Summary thus far
+				
 				---
  				### Cloud Native Buildpacks
 				 <img data-src="buildpacks.jpg">
@@ -211,6 +267,11 @@
 				---
 				### Catches
 				- Some buildpacks call out to the internet...
+
+				```
+				failed to make request: Get "https://artifacts.paketo.io/python/python_3.10.9_linux_x64_jammy_6d3b804b.tgz": x509: certificate signed by unknown authority
+				```
+
 				- Figure out and change dev workflow
 					- `docker-compose`
 				---
@@ -221,7 +282,6 @@
 				- Know that this tool/paradigm exists and what problems it tries to solve
 					- Code -> Container image
 				- Require deeper exploration on viability
-				---
 				</textarea>
         </section>
       </div>
@@ -237,7 +297,7 @@
       // - https://revealjs.com/config/
       Reveal.initialize({
         hash: true,
-
+		slideNumber: "c/t",
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
       });
