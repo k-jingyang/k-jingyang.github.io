@@ -170,36 +170,40 @@
 				### Why?
 				- Save money
 					- E.g. Give suggestions of cheaper instance types
-				- Govern services
+				- Govern services <!-- .element: class="fragment" -->
 					- E.g. Quality checks
-				- Security with automated controls
+				- Security with automated controls <!-- .element: class="fragment" -->
+					- E.g. Track dependencies used
 				---
 				### Practices
-				- Track and stabilise support issues
-					- Peaks right after every feature release
-				- Controlled freedom <!-- .element: class="fragment" -->
+				- Controlled freedom 
+
 				<p class="r-stretch">
 					<img src="platform-options.jpg" width="60%">
 				</p>
+
+				- Track and stabilise support issues <!-- .element: class="fragment" -->
+					- Peaks right after every feature release
 				---
 				### Practices
 				- Decision making
 					- 90% decide sharply 
 					- 10% escalate to leader 
 					- 1% golden nuggets (decides travel of team)
+				- Handling non-stardadised paths  <!-- .element: class="fragment" -->
+					- E.g. Experimentation/POC
+					- Infra-as-code for compliance
+				- Bootcamp to learn internal tools <!-- .element: class="fragment" -->				
+				---
+				### Practices
 				- Communication <!-- .element: class="fragment" -->
 					- Newsletter 
 					- App notifications 
 					- Emails
 				- Public roadmap <!-- .element: class="fragment" -->
+
 				---
-				### Practices
-				- Handling non-stardadised paths 
-					- E.g. Experimentation/POC
-					- Infra-as-code for compliance
-				- Bootcamp to learn internal tools <!-- .element: class="fragment" -->
-				---
-				### Their trophy - Log4j
+				### One of their trophies - Log4j
 				- Patched in 1 day
 				---
 				### Assessment
@@ -207,7 +211,7 @@
 				- Newsletter <!-- .element: class="fragment" -->
 					- We have started to do this
 				- Track support cost <!-- .element: class="fragment" -->
-				- Identify concrete problem to solve <!-- .element: class="fragment" -->
+				- Identify concrete problem to solve (The Why?) <!-- .element: class="fragment" -->
 					- What is "developer experience"? <!-- .element: class="fragment" -->
 					- What is "make developer lives easier"? <!-- .element: class="fragment" -->
 				---
@@ -219,6 +223,9 @@
 				- Added to go/devops
 				---
 				## Summary thus far
+				- Log4j - Track software dependencies
+				- Platform team - Practices & Why <!-- .element: class="fragment" -->
+				- CPU limits <!-- .element: class="fragment" -->
 				---
  				## Cloud Native Buildpacks
 				 <img data-src="buildpacks.jpg">
@@ -243,26 +250,30 @@
 				---
 				### Code -> Container image
 				```bash
+				cd project_dir/
 				pack build image_name --builder paketobuildpacks/builder:base
 				```
 				---
-				## How it works
-				<p class="r-stretch">
-					<img src="builders.jpg"/>
-				</p>
+				### How it works
+				<img class="r-stretch" src="builders.jpg"/>
 				<p style="opacity: 0.2; font-size: 0.5em">Credits: AWS</p>
-
-				- Checks for specific filenames / environment variables <!-- .element: class="fragment" -->
+				<p class="fragment">Checks for specific filenames / environment variables</p> 
 				---
-				## Example 1
+				### Example 1
+
 				<p class="r-stretch">
 					<img src="python-cnb.png"/>
 				</p>
+
 				---
-				## Example 2
+				### Example 2
 				<p class="r-stretch">
 					<img src="java-cnb.png"/>
 				</p>
+				---
+				### Some buildpacks
+				https://github.com/GoogleCloudPlatform/buildpacks
+				https://github.com/orgs/paketo-buildpacks/repositories
 				---
 				### The good
 				- No more Dockerfile
@@ -284,10 +295,9 @@
 				### Takeaways
 				- Know that this tool/paradigm exists and what problems it tries to solve
 					- Code -> Container image
-				- Require deeper exploration on viability
+				- Require deeper exploration on viability <!-- .element: class="fragment" -->
 				---
-				## Summary
-				- xxx
+				### Q&A
 				</textarea>
         </section>
       </div>
