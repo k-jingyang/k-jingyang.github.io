@@ -20,9 +20,9 @@ graph TD;
 
 In the graph above, Service C is a dependency of Service A and Service B. C is a weak dependency of B, while C is a strong dependency of A. If C were to fail, A will break. However, B doesn't break, albeit with degraded functionality. 
 
-To be more specific and nuanced, this dependency relationship can be viewed from a service level or to a function level. A function of a service is dependent on another function of another service. So there can exist multiple strong and weak dependency relationships between two services (when we have different functions calling different functions).
+To be more specific and nuanced, this dependency relationship can be viewed at a service level or at a function level. A function of a service is dependent on another function of another service. So there can exist multiple strong and weak dependency relationships between two services (when we have different functions calling different functions).
 
-This concept of strong/weak dependency helps to create a mental model for understanding and designing services that is capable of **Graceful degradation**. 
+This concept of strong/weak dependency helps to create a mental model for understanding and designing services that are capable of **Graceful degradation**. 
 
 i.e. "When building a new feature that calls the API of another service, should this be a weak or a strong dependency? If it's going to be a weak dependency. What will the degraded functionality be like and how do I achieve that (e.g. using timeouts or default/zero data)?"
 
