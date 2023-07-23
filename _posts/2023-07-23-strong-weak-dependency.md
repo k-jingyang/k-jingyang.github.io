@@ -13,8 +13,8 @@ A service (e.g. A) is strongly dependent on another service (e.g. C) if it **bre
 
 <div class="mermaid">
 graph TD;
-    A-->|(strongly) depends on|C;
-    B-.->|(weakly) depends on|C;
+    A-->|strongly depends on|C;
+    B-.->|weakly depends on|C;
 </div>
 <script async src="https://unpkg.com/mermaid@8.2.3/dist/mermaid.min.js"></script>
 
