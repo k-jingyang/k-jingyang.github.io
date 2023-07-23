@@ -3,7 +3,6 @@ layout: post
 title:  "Strong/Weak dependencies & Graceful degradation"
 date:   2023-07-23 18:30:00 +0800
 categories: distributed-systems
-mermaid: true
 ---
 
 # Strong/Weak dependencies & Graceful degradation
@@ -12,11 +11,12 @@ In my new role, I came across a useful concept of **Strong and weak dependencies
 
 A service (e.g. A) is strongly dependent on another service (e.g. C) if it **break** whenever its dependency fails.
 
-```mermaid
+<div class="mermaid">
 graph TD;
     A-->|(strongly) depends on|C;
     B-.->|(weakly) depends on|C;
-```
+</div>
+<script async src="https://unpkg.com/mermaid@8.2.3/dist/mermaid.min.js"></script>
 
 In the graph above, Service C is a dependency of Service A and Service B. C is a weak dependency of B, while C is a strong dependency of A. If C were to fail, A will break. However, B doesn't break, albeit with degraded functionality. 
 
