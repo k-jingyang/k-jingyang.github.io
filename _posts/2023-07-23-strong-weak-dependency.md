@@ -3,6 +3,7 @@ layout: post
 title:  "Strong/Weak dependencies & Graceful degradation"
 date:   2023-07-23 18:30:00 +0800
 categories: distributed-systems
+mermaid: true
 ---
 
 # Strong/Weak dependencies & Graceful degradation
