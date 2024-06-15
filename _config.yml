@@ -19,8 +19,7 @@ author:
   name: Jing Yang
   position: Software Engineer
   company:
-    name: CSIT
-    url: https://www.linkedin.com/company/centre-for-strategic-infocomm-technologies
+    name: TikTok
 description: >- # this means to ignore newlines until "baseurl:"
   A blog to write about my thoughts and learnings on tech & life
 baseurl: "" # the subpath of your site, e.g. /blog

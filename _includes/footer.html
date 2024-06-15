@@ -17,10 +17,14 @@
           {%- if site.author.position -%}
           <li>{{ site.author.position }}
             {%- if site.author.company -%} 
+            {%- if site.author.company.url -%}
             <span> @</span> 
             <a href="{{ site.author.company.url }}">
               {{ site.author.company.name }}
             </a>
+            {%- else -%}
+            <span> @ {{ site.author.company.name }}</span> 
+            {%- endif -%}
             {%- endif -%}
             {%- endif -%}
           </li>
