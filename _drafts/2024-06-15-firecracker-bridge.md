@@ -97,4 +97,6 @@ default via 172.16.0.1 dev eth0
 
 ### A simple documentation PR
 
-For the benefit of subsequent newbies, it'll be nice to have a working example of bridge networking in the README of the Firecracker Go SDK. TODO: insert PR
+For the benefit of subsequent newbies, it'll be nice to have a working example of bridge networking in the README of the Firecracker Go SDK.
+
+<https://github.com/firecracker-microvm/firecracker-go-sdk/pull/575>
