@@ -22,10 +22,10 @@ In the graph above, Service C is a dependency of Service A and Service B. C is a
 
 To be more specific and nuanced, this dependency relationship can be viewed at a service level or at a function level. A function of a service is dependent on another function of another service. So there can exist multiple strong and weak dependency relationships between two services (when we have different functions calling different functions).
 
-This concept of strong/weak dependency helps to create a mental model for understanding and designing services that are capable of **Graceful degradation**. 
+This concept of strong/weak dependency helps to create a mental model for understanding and designing services that are capable of **Graceful degradation**.
 
-i.e. "When building a new feature that calls the API of another service, should this be a weak or a strong dependency? If it's going to be a weak dependency. What will the degraded functionality be like and how do I achieve that (e.g. using timeouts or default/zero data)?"
+i.e. "When building a new feature that calls the API of another service, should this be a weak or a strong dependency? If it's going to be a weak dependency. What will the degraded functionality be like and how do I achieve that (e.g. using timeouts or default/zero value)?"
 
 ## Automatic detection of strong/weak dependency
 
-Another cool thing! When service-to-service calls are proxied by service mesh, the service mesh can determine if a service-to-service call is a strong or a weak dependency. This can be done by randomly injecting faults to the downstream service call (e.g. C) and seeing how the originating call to the upstream service (e.g. A or B) respond; whether it breaks or a degraded response.
+Another cool thing! When service-to-service calls are proxied by service mesh, the service mesh can determine if a service-to-service call is a strong or a weak dependency. This can be done by randomly injecting faults to the downstream service call (e.g. C) and seeing how the originating call to the upstream service (e.g. A or B) respond; whether it breaks or returns a degraded response.
