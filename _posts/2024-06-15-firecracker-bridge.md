@@ -5,7 +5,7 @@ date:   2024-06-15 09:00:00 +0800
 categories: firecracker
 ---
 
-tl;dr: You can follow this guide in [firecracker-containerd](https://github.com/firecracker-microvm/firecracker-containerd/blob/main/docs/getting-started.md#cni-setup) to configure bridge networking with CNI
+> tl;dr: You can follow this guide in [firecracker-containerd](https://github.com/firecracker-microvm/firecracker-containerd/blob/main/docs/getting-started.md#cni-setup) to configure bridge networking with CNI
 
 I was trying to work through the [Jepsen tutorial](https://github.com/jepsen-io/jepsen/tree/main/doc/tutorial) with Firecracker uVMs, and this required spinning up an etcd cluster on 5 uVMs. 
 Inter-uVM connectivity was necessary because the etcd nodes has to communicate with each other.
