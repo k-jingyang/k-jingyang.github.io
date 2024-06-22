@@ -15,21 +15,23 @@ Inter-uVM connectivity was necessary because the etcd nodes has to communicate w
 ```go
 import fc "github.com/firecracker-microvm/firecracker-go-sdk"
 
-config := fc.Config{
-    NetworkInterfaces: fc.NetworkInterfaces{
-        fc.NetworkInterface{
-            // finds the CNI configuration in in /etc/cni/conf.d by default
-            CNIConfiguration: &fc.CNIConfiguration{ 
-                NetworkName: "fcnet", // this name must match the name in the CNI config file  
+func main() {
+    config := fc.Config{
+        NetworkInterfaces: fc.NetworkInterfaces{
+            fc.NetworkInterface{
+                // finds the CNI configuration in in /etc/cni/conf.d by default
+                CNIConfiguration: &fc.CNIConfiguration{ 
+                    NetworkName: "fcnet", // this name must match the name in the CNI config file  
+                },
+                AllowMMDS: true,
             },
-            AllowMMDS: true,
         },
-    },
-}
+    }
 
-ctx := context.Background()
-uVM, _ := fc.NewMachine(ctx, config)
-_ := uVM.Start(ctx)
+    ctx := context.Background()
+    uVM, _ := fc.NewMachine(ctx, config)
+  _ := uVM.Start(ctx)
+}
 ```
 
 ### A little on CNI
