@@ -137,7 +137,7 @@ Checking the etcd logs shows that the etcd nodes could not communicate with each
 2024-07-06 05:20:01.182814 I | raft: 7466dc0c8072fbc4 [logterm: 1, index: 3] sent MsgVote request to ee298f474ec4f928 at term 5
 ```
 
-This is because my CNI config was set to `ptp`, which only allow the VM <-> Host communication and not VM <-> VM
+This is because my CNI config was set to `ptp`, which only allow the VM <-> Host communication and not VM <-> VM.
 
 ```json
 {
@@ -192,7 +192,7 @@ Configuring my CNI as described in my [previous post](2024-06-15-firecracker-bri
 
 ### iptables issue and building my own linux kernel
 
-After introducing the nemesis into the test, I faced an iptables error
+After introducing the nemesis into the test, I faced an iptables error.
 
 ```bash
 STDIN:
