@@ -206,14 +206,62 @@ sudo: unable to resolve host localhost.localdomain: Name or service not known
 iptables/1.8.7 Failed to initialize nft: Protocol not supported
 ```
 
-There are not much resources on this issue. Based on this [tweet](https://x.com/iximiuz/status/1610401406002814976), it seems like nftables is not supported on the kernel distributed by the Firecracker team. I found an [article](https://forum.opennebula.io/t/enable-nftables-in-firecracker-default-5-10-kernel-config/11985) that solves this issue by building their own Linux kernel and enabling supporting for nftables.
+There are not much resources on this issue. Based on this [tweet](https://x.com/iximiuz/status/1610401406002814976), it seems like nftables is not supported on the kernel distributed by the Firecracker team. I found an [opennebula forum post](https://forum.opennebula.io/t/enable-nftables-in-firecracker-default-5-10-kernel-config/11985) that solves this issue by building their own Linux kernel and enabling supporting for nftables.
 
-.... more details on enabling support for nftables
+- Not sure if I messed up the config given in the forum post but it didn't work for me
+
+I then followed the instructions in [Firecracker docs](https://github.com/firecracker-microvm/firecracker/blob/main/docs/rootfs-and-kernel-setup.md#manual-compilation) to compile the kernel with my custom configuration using `make menuconfig`.
+
+- I selected almost all options that relate to Netfilter, so it may not be the smallest workable kernel.
+- <a href="/assets/files/jepsen-firecracker-kernel.txt" target="_blank">This</a> was the config file I ended up with
+
+#### Linux kernel y or m
+
+After reading this [stackoverflow post](https://stackoverflow.com/questions/5392756/what-does-m-mean-in-kernel-configuration-file), I selected y instead of m to include Netfilter functionalities into the kernel directly.
+
+I believe this is simpler so that we don't have to run any additional commands after booting up the VM and before we run the Jepsen test.
+
+### Finally
+
+Now, if I were to specify the Firecracker API server to use my custom kernel image,
+
+```go
+import fc "github.com/firecracker-microvm/firecracker-go-sdk"
+
+func main() {
+    config := fc.Config{
+      SocketPath:      path.Join(socketDir, sockName),
+      LogPath:         stdout.Name(),
+      LogLevel:        "Info",
+      KernelImagePath: "vmlinux-6.1", // my custom built kernel
+      KernelArgs:      "console=ttyS0 reboot=k panic=1 pci=off overlay_root=ram ssh_disk=/dev/vdb init=/sbin/overlay-init",
+      }
+    ctx := context.Background()
+    uVM, _ := fc.NewMachine(ctx, config)
+  _ := uVM.Start(ctx)
+}
+```
+
+and then run `lein test` after spinning up a few VMs, we can now run the Jepsen test!
+
+```
+INFO [2024-07-14 10:28:16,721] jepsen worker 4 - jepsen.util 14 :ok     :read   [11 3]
+INFO [2024-07-14 10:28:16,733] jepsen worker nemesis - jepsen.util :nemesis     :info   :start  [:isolated {"172.16.0.157" #{"172.16.0.156" "172.16.0.158"}, "172.16.0.156" #{"172.16.0.157"}, "172.16.0.158" #{"172.16.0.157"}}]
+INFO [2024-07-14 10:28:16,754] jepsen worker 0 - jepsen.util 5  :invoke :write  [11 4]
+INFO [2024-07-14 10:28:16,756] jepsen worker 0 - jepsen.util 5  :ok     :write  [11 4]
+INFO [2024-07-14 10:28:16,767] jepsen worker 3 - jepsen.util 3  :info   :cas    [9 [1 3]]       :timeout
+INFO [2024-07-14 10:28:16,791] jepsen worker 1 - jepsen.util 11 :invoke :read   [11 nil]
+INFO [2024-07-14 10:28:16,792] jepsen worker 1 - jepsen.util 11 :ok     :read   [11 3]
+INFO [2024-07-14 10:28:16,828] jepsen worker 2 - jepsen.util 7  :invoke :write  [11 4]
+INFO [2024-07-14 10:28:16,830] jepsen worker 2 - jepsen.util 7  :ok     :write  [11 4]
+INFO [2024-07-14 10:28:16,850] jepsen worker 3 - jepsen.util 8  :invoke :write  [11 0]
+```
 
 ### Conclusion
 
 It has been fun getting the Jepsen tutorial to work with Firecracker VMs! I learnt quite a fair bit through this process:
 
+- What Jepsen test is, and how it works
 - We can build custom rootfs from docker images
 - Docker images don't usually come with `init`
 - We need to use the bridge CNI for inter-VM communication
