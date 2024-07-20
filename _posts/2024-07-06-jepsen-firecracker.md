@@ -225,7 +225,7 @@ I believe this is simpler so that we don't have to run any additional commands a
 
 Now, if I were to specify the Firecracker API server to use my custom kernel image,
 
-```go
+```golang
 import fc "github.com/firecracker-microvm/firecracker-go-sdk"
 
 func main() {
@@ -238,7 +238,7 @@ func main() {
       }
     ctx := context.Background()
     uVM, _ := fc.NewMachine(ctx, config)
-  _ := uVM.Start(ctx)
+    _ := uVM.Start(ctx)
 }
 ```
 
