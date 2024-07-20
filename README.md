@@ -18,7 +18,7 @@ $ bundle exec jekyll serve --livereload --drafts
 
 ## Overriding CSS used by Minima 2.5.1
 
-> This is primarily used to override the syntax highlighting used by Minima
+> This is primarily used to override the default syntax highlighting that comes with Minima
 
 1. We copied `main.scss` from the `minima` gem into `assets/main.scss`
 ```scss
