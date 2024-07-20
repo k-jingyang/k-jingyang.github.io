@@ -1,3 +1,6 @@
 [submodule "sharing/slides/reveal.js"]
 	path = sharing/slides/reveal.js
 	url = https://github.com/hakimel/reveal.js.git 
+[submodule "themes/risotto"]
+	path = themes/risotto
+	url = git@github.com:joeroe/risotto.git
