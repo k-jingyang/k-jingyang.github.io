@@ -56,7 +56,9 @@ A hard link to a file (say my-file.txt), creates a new directory entry (filename
 
 A soft link (also known as symbolic link) to a file (say my-file.txt), creates a new directory entry (filename, inode number) and has its own inode number. However, the content of this soft link points to the specific directory entry of my-file.txt. Hence, if my-file.txt is deleted (which removes its own directory entry), the soft link will be broken.
 
-![visualization](https://i.stack.imgur.com/ka2ab.jpg)
+![visualization](/assets/images/soft_link_vs_hard_link.jpg)
+
+> Image from: https://stackoverflow.com/a/29786294
 
 ### References
 
