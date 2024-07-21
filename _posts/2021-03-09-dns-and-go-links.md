@@ -3,6 +3,7 @@ layout: post
 title:  DNS & GoLinks
 date:   2021-03-09 22:00:00 +0800
 categories: dns 
+excerpt: "A records, huh?"
 ---
 
 ### Why DNS, suddenly? 
@@ -16,16 +17,16 @@ I guessed that DNS had a part to play, and confirmed it after looking at the set
 
 Hmmm. That sounds like DNS alright, and I know what DNS does! It translates easy to remember names like `www.example.com` to its IP address. Our web browser contacts a DNS server whenever we try to access something like `www.example.com` to fetch its corresponding IP address.
 
-> What are A records? 
+> What are A records?
 
 A records? It's a DNS thing... What my reply would be, if I were to be asked about it. Using this little run-in with DNS, I decided to stretch my understanding for a bit.
 
 ### DNS lookup
 Although we refer to them usually as just DNS servers, there are actually 4 types. 
 
-1. Recursive resolvers 
+1. Recursive resolvers
 1. Root nameservers
-1. TLD nameservers 
+1. TLD nameservers
 1. Authoritative nameservers
 
 When a web client wants to resolve `www.example.com`, it queries a DNS recursive resolver (e.g. Google's `8.8.8.8`). The DNS recursive resolver could respond with a cached result if it has recently answered another `www.example.com` query. If not, it will: 

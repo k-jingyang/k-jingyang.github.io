@@ -1,8 +1,9 @@
 ---
 layout: post
-title:  "Strong/Weak dependencies & Graceful degradation"
+title:  "Strong/weak dependencies & Graceful degradation"
 date:   2023-07-23 18:30:00 +0800
 categories: distributed-systems
+excerpt: ""
 ---
 
 # Strong/Weak dependencies & Graceful degradation

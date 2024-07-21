@@ -3,13 +3,14 @@ layout: post
 title:  "Metastable Failures"
 date:   2022-05-16 20:47:00 +0800
 categories: distributed-systems
+excerpt: "Entering a state where we can't do tasks that we have done before."
 ---
 
 As referred to by [Marc Brooker's blogpost][2] on [Metastability][1], a metastable failure
 
 > is a kind of *stable down state*, where the system is stable but not doing useful work, even though it's only being offered a load that it successfully handled sometime in the past
 
-A system can enter this state when it's in a *metastable vulnerable state* (e.g. being at peak utilization) and is given a trigger (e.g. unexpected spike in load). Once in this state, there is a self sustaining feedback loop that keeps it in this state, even when the trigger is removed. 
+A system can enter this state when it's in a *metastable vulnerable state* (e.g. being at peak utilization) and is given a trigger (e.g. unexpected spike in load). Once in this state, there is a self sustaining feedback loop that keeps it in this state, even when the trigger is removed.
 
 ### An example
 Given [here][3] where it started with a bulk of your web application's database queries being slow to reach your database (the trigger). As such, the web application retries, now you have 2x the load waiting to reach the database. 

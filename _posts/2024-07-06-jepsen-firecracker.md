@@ -3,6 +3,7 @@ layout: post
 title:  "Using Firecracker VMs to run Jepsen test"
 date:   2024-07-06 09:00:00 +0800
 categories: firecracker jepsen distributed systems database
+excerpt: ""
 ---
 
 [Jepsen test](https://github.com/jepsen-io/jepsen) requires us to have a running cluster for the DB under test. The DB nodes can be on VMs, bare-metal, on the cloud, as long as we have network, ssh and sudo/root access.  **Why not run it with Firecracker?**

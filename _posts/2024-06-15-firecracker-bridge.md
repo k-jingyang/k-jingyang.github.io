@@ -3,6 +3,7 @@ layout: post
 title:  "Using bridge networking with Firecracker Go SDK"
 date:   2024-06-15 09:00:00 +0800
 categories: firecracker
+excerpt: ""
 ---
 
 > tl;dr: You can follow this guide in [firecracker-containerd](https://github.com/firecracker-microvm/firecracker-containerd/blob/main/docs/getting-started.md#cni-setup) to configure bridge networking with CNI

@@ -3,6 +3,7 @@ layout: post
 title: "Files, Directories, Inodes"
 date: 2022-02-16 20:00:00 +0800
 categories: linux files
+excerpt: ""
 ---
 
 It's been a while since I've updated this blog. Here's something that I learnt a few months ago about Files, Directories, and Inodes

@@ -29,6 +29,7 @@ linkedin_username: k-jingyang
 header_pages:
   - about.md
   - sharing.md
+show_excerpts: true
 
 # Build settings
 markdown: kramdown

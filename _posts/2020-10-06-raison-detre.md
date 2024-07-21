@@ -3,6 +3,7 @@ layout: post
 title:  "Raison d'être"
 date:   2020-10-06 22:00:00 +0800
 categories: writing
+excerpt: "The Why"
 ---
 
 Using this blog, I want to:
