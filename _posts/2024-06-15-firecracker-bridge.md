@@ -63,7 +63,7 @@ This was how I configured my CNI config file `etc/cni/conf.d/fcnet.conflist`. No
       "isDefaultGateway": true,
       "ipam": {
         "type": "host-local",
-        "subnet": "172.16.0.0/24",
+        "subnet": "172.16.0.0/24"
       }
     },
     {
