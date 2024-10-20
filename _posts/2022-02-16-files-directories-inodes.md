@@ -6,6 +6,8 @@ categories: linux files
 excerpt: ""
 ---
 
+EDIT (2024-10-20): Stumbled upon [OSTEP](https://pages.cs.wisc.edu/~remzi/OSTEP/), Chapter 40 covers a lot of these! 
+
 It's been a while since I've updated this blog. Here's something that I learnt a few months ago about Files, Directories, and Inodes
 
 ## What are those?
