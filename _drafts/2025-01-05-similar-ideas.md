@@ -30,7 +30,7 @@ The idea here is that disk data (or slower access medium) is cached in memory fo
 
 ## Cache eviction & Garbage collection
 
-[2Q algorithm](https://www.vldb.org/conf/1994/P439.PDF) is a cache replacement algorithm which maintains 2 queues. The first queue is a FIFO queue meant for transient data, the other queue is a LRU queue for hot data. When a data is first accessed, it's first placed in the transient queue. When the data is accessed again, it's placed in then placed in the hot queue. When we have to evict data, we evict from the transient data queue.
+[2Q algorithm](https://www.vldb.org/conf/1994/P439.PDF) is a cache replacement algorithm which maintains 2 queues. The first queue is a FIFO queue meant for transient data, the other queue is a LRU queue for hot data. When a data is first accessed, it's first placed in the transient queue. When the data is accessed again, it's then placed in the hot queue. When we have to evict data, we evict from the transient data queue.
 
 Generational GC like xxx and xxx 
 
