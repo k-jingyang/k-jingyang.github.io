@@ -6,9 +6,7 @@ categories: distributed-systems
 excerpt: ""
 ---
 
-# Strong/Weak dependencies & Graceful degradation
-
-In my new role, I came across a useful concept of **Strong and weak dependencies** and its application.
+In my new role, I came across a useful concept of **strong and weak dependencies** and its application.
 
 A service (e.g. A) is strongly dependent on another service (e.g. C) if it **break** whenever its dependency fails.
 

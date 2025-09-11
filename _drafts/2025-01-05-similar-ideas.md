@@ -20,7 +20,7 @@ LSM Tree, filesystem, flash translation layer
 
 OS's [page cache](https://en.wikipedia.org/wiki/Page_cache) is a portion of RAM used as a cache for data loaded in (i.e. paged in) from disk. This reduces lookup costs when retrieving the same items repeatedly. It takes up a proportion of RAM which would otherwise be unused. Since this segment can be easily reclaimed, it is included into `available` in `free`.
 
-Databases (e.g. InnoDB) has the concept of [buffer pools](https://www1.columbia.edu/sec/acis/db2/db2d0/db2d0122.htm) where data and indexes are cached are loading them from disk. Similarly, this is also used to reduce the cost of repeated access.
+Databases (e.g. InnoDB) has the concept of [buffer pools](https://www1.columbia.edu/sec/acis/db2/db2d0/db2d0122.htm) where data and indexes are cached after loading them from disk. Similarly, this is also used to reduce the cost of repeated access.
 
 Hence, on a OS host that's running a database, the same piece of data could be cached twice; once in the OS's page cache, once in the db's buffer pool.
 
