@@ -51,7 +51,7 @@ From the [CNI website](https://www.cni.dev/docs/spec/#summary), the CNI specific
 
 This was how I configured my CNI config file `etc/cni/conf.d/fcnet.conflist`. Note that the name **fcnet** matches the `NetworkName` specified with the sdk.
 
-```text
+```json
 {
   "name": "fcnet",
   "cniVersion": "0.4.0",
