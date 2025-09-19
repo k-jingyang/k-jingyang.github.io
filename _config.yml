@@ -37,12 +37,12 @@ theme: minima
 plugins:
   - jekyll-feed
 
+highlighter: none
 kramdown:
   input: GFM
-  syntax_highlighter: rouge
   syntax_highlighter_opts:
     # Use existing pygments syntax highlighting css
-    css_class: 'highlight'
+    disable: true
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
