@@ -1,0 +1,61 @@
+BenchmarkSyncReadChunkFileNum/900KB_chunks_50_files-12               182    6533284 ns/op 48209257 B/op     3961 allocs/op
+BenchmarkSyncReadChunkFileNum/900KB_chunks_100_files-12              78   13243682 ns/op 96040076 B/op     7884 allocs/op
+BenchmarkSyncReadChunkFileNum/900KB_chunks_200_files-12              46   25302890 ns/op 191311048 B/op    15687 allocs/op
+BenchmarkSyncReadChunkFileNum/900KB_chunks_300_files-12              31   37863840 ns/op 286923119 B/op    23412 allocs/op
+BenchmarkSyncReadChunkFileNum/900KB_chunks_400_files-12              20   50523025 ns/op 382352090 B/op    31137 allocs/op
+BenchmarkSyncReadChunkFileNum/900KB_chunks_500_files-12              19   62103585 ns/op 477471595 B/op    38834 allocs/op
+
+BenchmarkIOUringReadChunkFileNum/900KB_chunks_50_files-12               147    7729347 ns/op   604442 B/op     3097 allocs/op
+BenchmarkIOUringReadChunkFileNum/900KB_chunks_100_files-12              85   13915508 ns/op 1699731 B/op     6148 allocs/op
+BenchmarkIOUringReadChunkFileNum/900KB_chunks_200_files-12              43   27811414 ns/op 5902591 B/op    12262 allocs/op
+BenchmarkIOUringReadChunkFileNum/900KB_chunks_300_files-12              31   37743055 ns/op 11741728 B/op    18378 allocs/op
+BenchmarkIOUringReadChunkFileNum/900KB_chunks_400_files-12              22   49538975 ns/op 20646392 B/op    24493 allocs/op
+BenchmarkIOUringReadChunkFileNum/900KB_chunks_500_files-12              18   62112707 ns/op 31339720 B/op    30620 allocs/op
+
+BenchmarkSyncReadChunkFileSizes/235KB_chunks_100_files-12         	     507	   2376916 ns/op	24555840 B/op	    7859 allocs/op
+BenchmarkSyncReadChunkFileSizes/470KB_chunks_100_files-12         	     213	   5545640 ns/op	48443828 B/op	    7861 allocs/op
+BenchmarkSyncReadChunkFileSizes/700KB_chunks_100_files-12         	     136	   8735864 ns/op	72315687 B/op	    7872 allocs/op
+BenchmarkSyncReadChunkFileSizes/900KB_chunks_100_files-12         	      97	  12257212 ns/op	96086180 B/op	    7879 allocs/op
+BenchmarkSyncReadChunkFileSizes/1.1MB_chunks_100_files-12         	      75	  15778168 ns/op	119292519 B/op	    7888 allocs/op
+BenchmarkSyncReadChunkFileSizes/1.40MB_chunks_100_files-12        	      55	  19107419 ns/op	143092648 B/op	    7899 allocs/op
+BenchmarkSyncReadChunkFileSizes/1.65MB_chunks_100_files-12        	      46	  22534788 ns/op	167022185 B/op	    7901 allocs/op
+
+BenchmarkSyncReadChunkFileSizes_syncPool/235KB_chunks_100_files-12         	    1184	   1007848 ns/op	  477518 B/op	    7806 allocs/op
+BenchmarkSyncReadChunkFileSizes_syncPool/470KB_chunks_100_files-12         	     429	   2730497 ns/op	  576927 B/op	    7806 allocs/op
+BenchmarkSyncReadChunkFileSizes_syncPool/700KB_chunks_100_files-12         	     240	   4950674 ns/op	  724792 B/op	    7808 allocs/op
+BenchmarkSyncReadChunkFileSizes_syncPool/900KB_chunks_100_files-12         	     166	   7154713 ns/op	  906058 B/op	    7812 allocs/op
+BenchmarkSyncReadChunkFileSizes_syncPool/1.1MB_chunks_100_files-12         	     117	  10267644 ns/op	 1355094 B/op	    7813 allocs/op
+BenchmarkSyncReadChunkFileSizes_syncPool/1.40MB_chunks_100_files-12        	      94	  12463037 ns/op	 1206543 B/op	    7815 allocs/op
+BenchmarkSyncReadChunkFileSizes_syncPool/1.65MB_chunks_100_files-12        	      79	  14955572 ns/op	 1274809 B/op	    7816 allocs/op
+
+BenchmarkSyncReadChunkFileSizes_200/235KB_chunks_200_files-12         	     238	   5028057 ns/op	48673269 B/op	   15641 allocs/op
+BenchmarkSyncReadChunkFileSizes_200/470KB_chunks_200_files-12         	     111	  10647391 ns/op	96438070 B/op	   15648 allocs/op
+BenchmarkSyncReadChunkFileSizes_200/700KB_chunks_200_files-12         	      68	  17264952 ns/op	144099966 B/op	   15670 allocs/op
+BenchmarkSyncReadChunkFileSizes_200/900KB_chunks_200_files-12         	      42	  24368931 ns/op	191648152 B/op	   15692 allocs/op
+BenchmarkSyncReadChunkFileSizes_200/1.1MB_chunks_200_files-12         	      38	  30708098 ns/op	237784012 B/op	   15672 allocs/op
+BenchmarkSyncReadChunkFileSizes_200/1.40MB_chunks_200_files-12        	      27	  37519873 ns/op	285633541 B/op	   15686 allocs/op
+BenchmarkSyncReadChunkFileSizes_200/1.65MB_chunks_200_files-12        	      24	  44257357 ns/op	333305960 B/op	   15686 allocs/op
+
+BenchmarkSyncReadChunkFileSizes_200_syncPool/235KB_chunks_200_files-12         	     592	   1991162 ns/op	  943491 B/op	   15561 allocs/op
+BenchmarkSyncReadChunkFileSizes_200_syncPool/470KB_chunks_200_files-12         	     208	   5711967 ns/op	 1296416 B/op	   15561 allocs/op
+BenchmarkSyncReadChunkFileSizes_200_syncPool/700KB_chunks_200_files-12         	     127	   9376674 ns/op	 1707707 B/op	   15565 allocs/op
+BenchmarkSyncReadChunkFileSizes_200_syncPool/900KB_chunks_200_files-12         	      82	  14250443 ns/op	 1947064 B/op	   15570 allocs/op
+BenchmarkSyncReadChunkFileSizes_200_syncPool/1.1MB_chunks_200_files-12         	      60	  19676695 ns/op	 2900870 B/op	   15578 allocs/op
+BenchmarkSyncReadChunkFileSizes_200_syncPool/1.40MB_chunks_200_files-12        	      46	  24967395 ns/op	 3015735 B/op	   15581 allocs/op
+BenchmarkSyncReadChunkFileSizes_200_syncPool/1.65MB_chunks_200_files-12        	      39	  29724743 ns/op	 2742343 B/op	   15589 allocs/op
+
+BenchmarkIOUringReadChunkFileSizes/235KB_chunks_100_files-12         	     304	   3608323 ns/op	  426466 B/op	    6146 allocs/op
+BenchmarkIOUringReadChunkFileSizes/470KB_chunks_100_files-12         	     192	   6191352 ns/op	  634517 B/op	    6146 allocs/op
+BenchmarkIOUringReadChunkFileSizes/700KB_chunks_100_files-12         	     129	   9087913 ns/op	  994741 B/op	    6147 allocs/op
+BenchmarkIOUringReadChunkFileSizes/900KB_chunks_100_files-12         	      98	  12035143 ns/op	 1476739 B/op	    6148 allocs/op
+BenchmarkIOUringReadChunkFileSizes/1.1MB_chunks_100_files-12         	      80	  14874815 ns/op	 2080425 B/op	    6149 allocs/op
+BenchmarkIOUringReadChunkFileSizes/1.40MB_chunks_100_files-12        	      63	  18476689 ns/op	 2989238 B/op	    6151 allocs/op
+BenchmarkIOUringReadChunkFileSizes/1.65MB_chunks_100_files-12        	      55	  21543006 ns/op	 3873909 B/op	    6152 allocs/op
+
+BenchmarkIOUringReadChunkFileSizes_200/235KB_chunks_200_files-12         	     164	   7121748 ns/op	 1010730 B/op	   12252 allocs/op
+BenchmarkIOUringReadChunkFileSizes_200/470KB_chunks_200_files-12         	      96	  12187514 ns/op	 1799216 B/op	   12252 allocs/op
+BenchmarkIOUringReadChunkFileSizes_200/700KB_chunks_200_files-12         	      66	  17746010 ns/op	 3142242 B/op	   12256 allocs/op
+BenchmarkIOUringReadChunkFileSizes_200/900KB_chunks_200_files-12         	      50	  23484369 ns/op	 4980092 B/op	   12259 allocs/op
+BenchmarkIOUringReadChunkFileSizes_200/1.1MB_chunks_200_files-12         	      39	  29837141 ns/op	 7569122 B/op	   12261 allocs/op
+BenchmarkIOUringReadChunkFileSizes_200/1.40MB_chunks_200_files-12        	      32	  35978249 ns/op	10752133 B/op	   12266 allocs/op
+BenchmarkIOUringReadChunkFileSizes_200/1.65MB_chunks_200_files-12        	      27	  42812968 ns/op	14590681 B/op	   12270 allocs/op
