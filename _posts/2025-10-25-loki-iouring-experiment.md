@@ -1,14 +1,17 @@
 ---
 layout: post
 title:  "Experimenting io_uring with Grafana Loki"
-date:   2025-10-12 21:00:00 +0800
+date:   2025-10-25 16:00:00 +0800
 categories: iouring
 excerpt: ""
 ---
 
 ### tldr;
 
-dfdfdf
+1. Tried to integrate `io_uring` using <https://github.com/pawelgaczynski/giouring> into Grafana Loki when reading local filesystem for log chunks
+2. Hope to see improvements from `io_uring` with benchmarks
+3. `sync.Pool`-ing buffers contributed to substantial performance benefits (due to lesser memory allocating)
+4. `io_uring` implementation wasn't better, most likely due to implementation and other factors
 
 ### What I'm doing
 
@@ -73,17 +76,36 @@ I have 2 guesses:
 1. With larger file sizes, `sync` blocks compute from doing useful work more often, while `io_uring` async nature circumvents this.
 2. Memory allocation becomes the difference here. We're allocating much lesser in my `io_uring` implementation where I use `sync.Pool` to hold buffers while the original `sync` implementation does not.
 
-TODO: Can we confirm this? Confirmed.. memory allocs indeed
+I decided to verify my 2nd hypothesis and I was right. [I used a simple `sync.Pool` to hold the buffers](https://github.com/k-jingyang/loki/commit/7cae61dd552cc389f0e667df46e172ebb14ab78c), even over-allocating for smaller files. This is a substantial improvement. My `io_uring` implementation without buffer pooling would definitely have a poorer performance than the original `sync` implementation.
+
+![visualization](/assets/images/io_uring_vs_sync_vs_sync_pool_chunk_size_100_200_files.png)
+
+### Summary
+
+My [`IOUringChunkClient`](https://github.com/k-jingyang/loki/blob/feat/iouring-test/pkg/storage/chunk/client/local/iouring_fs_client.go) benchmarks fell short of expectations. There's probably more factors that I'm missing here. e.g.
+
+- Maybe `io_uring` performs better with random reads across different files. In this experiement, we're doing full sequential reads across files.
+
+- Possibly, another hidden bottleneck in my implementation
+
+Noting that [qdrant's](https://qdrant.tech/articles/io_uring/) experienced a speedup [using io_uring](https://github.com/qdrant/qdrant/pull/2041/files). It's worth noting where this experiment differed. Qdrant was:
+
+1. Comparing mmap with io_uring 
+   - I was comparing against sync reads
+2. Issuing random disk reads
+   - I was doing full sequential read
+3. Using a network disk
+   - My tests used my local disk
 
 ### Hurdles & learnings
 
-One of the goal of doing this experiment is to expose myself to different issues and challenges that I don't often have to encounter at work. Journaling these helps me to solidifying my learnings.
+Although the end result wasn't what I hoped for (i.e. being able to see improvements with a simple `io_uring` implementation). One of the goals of doing this experiment was to expose myself to different issues and challenges that I don't often have to encounter at work. Journaling these helps to solidify my learnings.
 
 #### Broken io_uring library
 
 Fortunately, I can use <https://github.com/pawelgaczynski/giouring> to integrate io_uring capabilities. It seeks to mimic [liburing](https://github.com/axboe/liburing) APIs but in Go. However, the library is unmaintained, and [fails with go > 1.23](https://github.com/pawelgaczynski/giouring/issues/18). The library was previously hooking into Go's internal symbol for `mmap`, and Go 1.23 disallow such uses.
 
-The [fix](https://github.com/pawelgaczynski/giouring/commit/6be4f6912390a83c72a2b0afc06cb25c8fc57fb2) was to simply use the exported `mmap` provided by `golang.org/x/sys/unix`.
+The [fix](https://github.com/pawelgaczynski/giouring/commit/6be4f6912390a83c72a2b0afc06cb25c8fc57fb2) was to simply replace existing usage with the exported `mmap` provided by `golang.org/x/sys/unix`.
 
 #### os.File/FDs are recycled once out of scope
 
