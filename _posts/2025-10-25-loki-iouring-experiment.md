@@ -38,7 +38,7 @@ Because an `io_uring` instance is not thread safe, all interactions with it has 
    - `open` a file, return its FD (file descriptor)
    - allocate a buffer for io_uring to write the contents to
 2. To poll the completion queue
-   - so that we can proceed to decode the buffer containing the chunk data
+   - so that we can proceed to decode the buffer containing the chunk data read
 3. To decode the chunks read from file
    - and notify the main goroutine for each chunk decoded
 
@@ -71,12 +71,12 @@ I ran the same tests with 200 files, and it seems like there's a general trend w
 
 ![visualization](/assets/images/io_uring_vs_sync_chunk_size_100_200_files.png)
 
-I have 2 guesses:
+I have 2 guesses for this behaviour:
 
 1. With larger file sizes, `sync` blocks compute from doing useful work more often, while `io_uring` async nature circumvents this.
 2. Memory allocation becomes the difference here. We're allocating much lesser in my `io_uring` implementation where I use `sync.Pool` to hold buffers while the original `sync` implementation does not.
 
-I decided to verify my 2nd hypothesis and I was right. [I used a simple `sync.Pool` to hold the buffers](https://github.com/k-jingyang/loki/commit/7cae61dd552cc389f0e667df46e172ebb14ab78c), even over-allocating for smaller files. This is a substantial improvement. My `io_uring` implementation without buffer pooling would definitely have a poorer performance than the original `sync` implementation.
+I decided to verify my 2nd hypothesis and I was right. [I used a simple `sync.Pool` to hold the buffers](https://github.com/k-jingyang/loki/commit/7cae61dd552cc389f0e667df46e172ebb14ab78c) used in `sync` reads, even over-allocating for smaller files. This is a substantial improvement. My `io_uring` implementation without buffer pooling would definitely have a poorer performance than the original `sync` implementation.
 
 ![visualization](/assets/images/io_uring_vs_sync_vs_sync_pool_chunk_size_100_200_files.png)
 
