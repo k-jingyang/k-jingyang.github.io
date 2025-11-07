@@ -10,8 +10,9 @@ excerpt: ""
 
 1. Tried to integrate `io_uring` using <https://github.com/pawelgaczynski/giouring> into Grafana Loki when reading local filesystem for log chunks
 2. Hope to see improvements from `io_uring` with benchmarks
-3. `sync.Pool`-ing buffers contributed to substantial performance benefits (due to lesser memory allocating)
+3. `sync.Pool`-ing buffers contributed to substantial performance benefits (due to fewer memory allocation)
 4. `io_uring` implementation wasn't better, most likely due to implementation and other factors
+5. Received a few learnings from working on this
 
 ### What I'm doing
 
